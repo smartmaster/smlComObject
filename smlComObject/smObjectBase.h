@@ -81,6 +81,10 @@ namespace SmartLib
 			{
 				*ppvObject = smPtrHelpers::PtrAdvance(this, offset);
 				hr = S_OK;
+				if (SUCCEEDED(hr) && *ppvObject)
+				{
+					AddRef(); //call AddRef() not AddRefInner()
+				}
 			}
 			else
 			{
@@ -92,15 +96,6 @@ namespace SmartLib
 						break;
 					}
 				}
-			}
-
-			if (SUCCEEDED(hr) && *ppvObject)
-			{
-				AddRef(); //call AddRef() not AddRefInner()
-			}
-			else
-			{
-				hr = E_NOINTERFACE;
 			}
 
 			return hr;
@@ -128,12 +123,16 @@ namespace SmartLib
 			_outter = outter;
 		}
 
+		//the life time of inner is managed by outter
+		//should all PostAggragate() afterwards
 		virtual HRESULT Aggragate(smIObjectBase* inner) override
 		{
 			assert(inner);
 			assert(std::find(_inners.begin(), _inners.end(), inner) == _inners.end());
+			//inner->SetOutter(nullptr);
+			//inner->AddRef(); //must AddRef first (before SetOutter)
+			//inner->AddRefInner();
 			inner->SetOutter(static_cast<smIObjectBase*>(this));
-			inner->AddRef();
 			_inners.emplace_back(inner);
 			return S_OK;
 		}

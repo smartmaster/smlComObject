@@ -1,6 +1,7 @@
 
 
 #include <iostream>
+#include <vector>
 #include <atlbase.h>
 
 #include "smMetaType.h"
@@ -9,6 +10,8 @@
 #include "smMetaTypeHelpers.h"
 #include "smIObjectBaseHelpers.h"
 #include "smQIHelper.h"
+
+#include "xx-test-itf.h"
 
 /************************
 
@@ -91,6 +94,7 @@ namespace
 {
 	using namespace SmartLib;
 
+#if false
 
 	class xxxIA0 : public smIObjectBase
 	{
@@ -212,6 +216,7 @@ namespace
 		virtual const char* f1_xxxID() = 0;
 		virtual const char* f2_xxxID() = 0;
 	};
+#endif
 
 	class xxxObject : public smObjectBase<xxxIB, xxxIC, xxxID>
 	{
@@ -543,6 +548,7 @@ namespace
 {
 	using namespace SmartLib;
 
+#if false
 
 	class yyyIA0 : public smIObjectBase
 	{
@@ -664,6 +670,8 @@ namespace
 		virtual const char* f1_yyyID() = 0;
 		virtual const char* f2_yyyID() = 0;
 	};
+
+#endif
 
 	class yyyObject : public smObjectBase<yyyIB, yyyIC, yyyID>
 	{
@@ -986,6 +994,35 @@ void yyyTestSmoke()
 #endif
 }
 
+std::vector<const smMetaType*> TestActivateInterface()
+{
+	std::vector<const smMetaType*> vec;
+	vec.emplace_back(xxxIA0::StaticMetaType());
+	vec.emplace_back(xxxIA1::StaticMetaType());
+	vec.emplace_back(xxxIA2::StaticMetaType());
+	vec.emplace_back(xxxIB::StaticMetaType());
+	vec.emplace_back(xxxIC::StaticMetaType());
+	vec.emplace_back(xxxID::StaticMetaType());
+
+
+	vec.emplace_back(yyyIA0::StaticMetaType());
+	vec.emplace_back(yyyIA1::StaticMetaType());
+	vec.emplace_back(yyyIA2::StaticMetaType());
+	vec.emplace_back(yyyIB::StaticMetaType());
+	vec.emplace_back(yyyIC::StaticMetaType());
+	vec.emplace_back(yyyID::StaticMetaType());
+
+	return vec;
+}
+
+
+std::vector<const smMetaType*> TestActivateClass()
+{
+	std::vector<const smMetaType*> vecClass;
+	vecClass.emplace_back(xxxObject::StaticMetaType());
+	vecClass.emplace_back(yyyObject::StaticMetaType());
+	return vecClass;
+}
 
 #pragma endregion
 

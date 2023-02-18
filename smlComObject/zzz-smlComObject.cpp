@@ -4,16 +4,18 @@
 #include <iostream>
 #include <string>
 
+void TestFull();
 void TestSmoke();
 void yyyTestSmoke();
 void Test_smGetMoudleName();
 void TestVecHash();
+void TestFullRaw();
 
 int main(int argc, char** argv)
 {
 	using namespace ::std;
 
-	int testCase = 0;
+	int testCase = 3;
 	if (argc > 1)
 	{
 		testCase = stoi(argv[1]);
@@ -26,6 +28,18 @@ int main(int argc, char** argv)
 		//	Test_xxx();
 		//}
 		//break;
+
+	case 4:
+	{
+		TestFullRaw();
+	}
+	break;
+
+	case 3:
+	{
+		TestFull();
+	}
+	break;
 	case 2:
 	{
 		TestVecHash();
@@ -40,6 +54,7 @@ int main(int argc, char** argv)
 
 	case 0:
 	{
+		TestFull();
 		yyyTestSmoke();
 		TestSmoke();
 	}

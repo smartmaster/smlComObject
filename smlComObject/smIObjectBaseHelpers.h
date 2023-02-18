@@ -31,7 +31,28 @@ namespace SmartLib
 			return unk;
 		}
 
+		
+	};
 
 
+	template<typename TI>
+	class smPostAggrageOp
+	{
+	public:
+		static void PostAggrate(TI*& ptr)
+		{
+			ptr = nullptr;
+		}
+	};
+
+
+	template<typename TI>
+	class smPostAggrageOp<CComPtr<TI>>
+	{
+	public:
+		static void PostAggrate(CComPtr<TI>& ptr)
+		{
+			ptr.Detach();
+		}
 	};
 }
