@@ -10,6 +10,82 @@
 #include "smIObjectBaseHelpers.h"
 #include "smQIHelper.h"
 
+/************************
+
+//inheritance
+
+xIA0
+	+smIObjectBase
+
+xIA1
+	+smIObjectBase
+
+xIA2
+	+smIObjectBase
+
+
+xIB
+	+smIObjectBase
+	+xIA0
+	+xIA1
+	+xIA2
+
+xIC
+	+smIObjectBase
+	+xIA0
+	+xIA1
+	+xIA2
+
+xID
+	+smIObjectBase
+	+xIA0
+	+xIA1
+	+xIA2
+
+
+smObjectBase<xIB, xIC, xID>
+	+smIObjectBase
+	+xIB
+	+xIC
+	+xID
+
+
+xObject
+	+smObjectBase<xIB, xIC, xID>
+
+
+//full hierachy
+xObject
+	+smObjectBase<xIB, xIC, xID>
+		++smIObjectBase
+		++xIB
+				+++smIObjectBase
+				+++xIA0
+					++++smIObjectBase
+				+++xIA1
+					++++smIObjectBase
+				+++xIA2
+					++++smIObjectBase
+		++xIC
+				+++smIObjectBase
+				+++xIA0
+					++++smIObjectBase
+				+++xIA1
+					++++smIObjectBase
+				+++xIA2
+					++++smIObjectBase
+		++xID
+				+++smIObjectBase
+				+++xIA0
+					++++smIObjectBase
+				+++xIA1
+					++++smIObjectBase
+				+++xIA2
+					++++smIObjectBase
+************************/
+
+
+
 namespace
 {
 	using namespace SmartLib;
@@ -277,26 +353,68 @@ namespace
 			return __FUNCTION__;
 		}
 	};
+
+
+	static void TestAllQI(IUnknown* unk)
+	{
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<smIUnknown>(unk);
+			assert(ptr);
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<smIObjectBase>(unk);
+			assert(ptr);
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<xIA0>(unk);
+			assert(ptr);
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<xIA1>(unk);
+			assert(ptr);
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<xIA2>(unk);
+			assert(ptr);
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<xIB>(unk);
+			assert(ptr);
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<xIC>(unk);
+			assert(ptr);
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<xID>(unk);
+			assert(ptr);
+		}
+	}
 }
 
 void TestSmoke()
 {
 	CComPtr<IUnknown> unk;
 	unk.Attach(xObject::StaticMetaType()->CreateInstance());
+	TestAllQI(unk);
 
 	{
-		CComPtr<smIUnknown> unk1 = smQIHelper::QI<smIUnknown>(unk);
-		assert(unk1);
+		CComPtr<smIUnknown> unkTemp = smQIHelper::QI<smIUnknown>(unk);
+		assert(unkTemp);
+		TestAllQI(unkTemp);
 
-		CComPtr<smIObjectBase> ob = smQIHelper::QI<smIObjectBase>(unk);
-		assert(ob);
+		CComPtr<smIObjectBase> obTemp = smQIHelper::QI<smIObjectBase>(unk);
+		assert(obTemp);
+		TestAllQI(obTemp);
 	}
 
 
 	{
 		CComPtr<xIA0> ptr = smQIHelper::QI<xIA0>(unk);
 		assert(ptr);
-		
+
+		TestAllQI(ptr);
+
 		const char* fname0 = ptr->f0_xIA0();
 		const char* fname1 = ptr->f1_xIA0();
 		const char* fname2 = ptr->f2_xIA0();
@@ -311,6 +429,8 @@ void TestSmoke()
 		CComPtr<xIA1> ptr = smQIHelper::QI<xIA1>(unk);
 		assert(ptr);
 
+		TestAllQI(ptr);
+
 		const char* fname0 = ptr->f0_xIA1();
 		const char* fname1 = ptr->f1_xIA1();
 		const char* fname2 = ptr->f2_xIA1();
@@ -323,6 +443,8 @@ void TestSmoke()
 	{
 		CComPtr<xIA2> ptr = smQIHelper::QI<xIA2>(unk);
 		assert(ptr);
+
+		TestAllQI(ptr);
 
 		const char* fname0 = ptr->f0_xIA2();
 		const char* fname1 = ptr->f1_xIA2();
@@ -341,11 +463,10 @@ void TestSmoke()
 
 
 	{
-		xIB* ptr = smQIHelper::QIRaw<xIB>(unk);
+		auto [ptr, sp] = smQIHelper::QIRaw<xIB>(unk);
 		assert(ptr);
 
-		CComPtr<smIObjectBase> scope; //release xIB when out of scope
-		scope.Attach(ptr);
+		TestAllQI(sp);
 
 		const char* fname0 = ptr->f0_xIB();
 		const char* fname1 = ptr->f1_xIB();
@@ -358,11 +479,10 @@ void TestSmoke()
 
 #if true
 	{
-		xIC* ptr = smQIHelper::QIRaw<xIC>(unk);
+		auto [ptr, sp] = smQIHelper::QIRaw<xIC>(unk);
 		assert(ptr);
 
-		CComPtr<smIObjectBase> scope; //release xIB when out of scope
-		scope.Attach(ptr);
+		TestAllQI(sp);
 
 		const char* fname0 = ptr->f0_xIC();
 		const char* fname1 = ptr->f1_xIC();
@@ -375,11 +495,10 @@ void TestSmoke()
 
 
 	{
-		xID* ptr = smQIHelper::QIRaw<xID>(unk);
+		auto [ptr, sp] = smQIHelper::QIRaw<xID>(unk);
 		assert(ptr);
 
-		CComPtr<smIObjectBase> scope; //release xIB when out of scope
-		scope.Attach(ptr);
+		TestAllQI(sp);
 
 		const char* fname0 = ptr->f0_xID();
 		const char* fname1 = ptr->f1_xID();
@@ -391,3 +510,63 @@ void TestSmoke()
 	}
 #endif
 }
+
+
+
+#if true
+
+//usage and example
+
+namespace
+{
+	//for interface 
+	//multiple inheritance for interface is supported
+	class yyyInterface :
+		public smIObjectBase,
+		public xIB,	//to change...
+		public xIC,	//to change...
+		public xID	//to change...
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			return smMetaTypeMaker::Make<yyyInterface, smIObjectBase, xIB, xIC, xID> //to change...
+				(
+					SM_NAME_OF(yyyInterface),//to change...
+					GUID{ GUID_NULL }//to change...
+			);
+		}
+
+	public:
+		//pure virtual methods
+		//virtual void foo() = 0;
+	};
+
+
+	//for class
+	//yyyObject should and must be singly inherited by smObjectBase<...>
+	class yyyObject :
+		public smObjectBase<xIB, xIC, xID> //to change...
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			return smMetaTypeMaker::Make<yyyObject, smObjectBase<xIB, xIC, xID>> //to change...
+				(
+					SM_NAME_OF(yyyObject), //to change...
+					GUID{ GUID_NULL } //to change...
+			);
+		}
+
+		virtual const smMetaType* GetMetaType()  override
+		{
+			return StaticMetaType();
+		}
+
+	public:
+		//impls for pure virtual methods
+		//virtual void foo() override {}
+	};
+}
+
+#endif
