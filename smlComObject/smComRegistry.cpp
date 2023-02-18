@@ -72,10 +72,20 @@ void SmartLib::smComRegistry::ClearModule(const char* modName)
 {
 	std::unique_lock<std::shared_mutex> lockWriter{ _rwMtx };
 
-	auto iterMod = _maps.find(std::string{ modName });
-	if (iterMod != _maps.end())
 	{
-		_maps.erase(iterMod);
+		auto iterMod = _maps.find(std::string{ modName });
+		if (iterMod != _maps.end())
+		{
+			_maps.erase(iterMod);
+		}
+	}
+
+	{
+		auto iterMod = _mmaps.find(std::string{ modName });
+		if (iterMod != _mmaps.end())
+		{
+			_mmaps.erase(iterMod);
+		}
 	}
 }
 
