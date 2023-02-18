@@ -59,6 +59,8 @@ namespace SmartLib
 		virtual HRESULT Aggragate(smIObjectBase* inner) = 0;
 
 		virtual const smMetaType* GetMetaType() = 0;
+		virtual const bool IsMetaType(const GUID& clsid) const = 0;
+		virtual const bool IsMetaTypeOf(const GUID& clsid) const = 0;
 	};
 }
 

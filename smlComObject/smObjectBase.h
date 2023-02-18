@@ -17,6 +17,7 @@ namespace SmartLib
 	private:
 		smIObjectBase* _outter{ nullptr };
 		std::vector<smIObjectBase*> _inners;
+		std::vector<smIObjectBase*> _comBases;
 		std::atomic<ULONG> _refCount;
 
 	public:
@@ -33,6 +34,35 @@ namespace SmartLib
 		virtual const smMetaType* GetMetaType()  override
 		{
 			return StaticMetaType();
+		}
+
+		virtual const bool IsMetaType(const GUID& clsid) const override
+		{
+			assert(false);
+			return false;
+
+			//auto* mt = GetMetaType();
+			//return IsEqualGUID(mt->GetID(), clsid);
+		}
+
+		virtual const bool IsMetaTypeOf(const GUID& clsid)  const override
+		{
+			assert(false);
+			return false;
+
+			//bool found = IsMetaType(clsid);
+			//if (!found)
+			//{
+			//	for (auto* combase : _comBases)
+			//	{
+			//		found = combase->IsMetaTypeOf(clsid); //recursiely
+			//		if (found)
+			//		{
+			//			break;
+			//		}
+			//	}
+			//}
+			//return found;
 		}
 
 	public:
