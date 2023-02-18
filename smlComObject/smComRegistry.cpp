@@ -1,3 +1,5 @@
+
+#include <cassert>
 #include "smComRegistry.h"
 
 
@@ -12,8 +14,20 @@ void SmartLib::smComRegistry::Add(const char* modName, const smMetaType* mt)
 	auto&& modMap = _maps[strMod];
 
 	auto iter = modMap.find(guid);
-	assert(iter == modMap.end());
-	modMap.insert({ guid, mt });
+	//assert(iter == modMap.end());
+	if (iter != modMap.end())
+	{
+		//GUID of smObjectBase
+		static const GUID guidComBase{ 0xd23257e5, 0xa355, 0x43af, { 0xbb, 0xb4, 0x6c, 0xb0, 0xa9, 0xd5, 0xea, 0xda } };
+		assert(::IsEqualGUID(guid, guidComBase));
+		auto&& modMMap = _mmaps[strMod];
+		modMMap.insert({ guid, mt });
+	}
+	else
+	{
+		modMap.insert({ guid, mt });
+	}
+	
 }
 
 const SmartLib::smMetaType* SmartLib::smComRegistry::Find(const char* modName, const GUID& guid)

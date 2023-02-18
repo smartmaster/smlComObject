@@ -5,6 +5,7 @@
 #include <string>
 
 void TestSmoke();
+void yyyTestSmoke();
 void Test_smGetMoudleName();
 void TestVecHash();
 
@@ -39,6 +40,7 @@ int main(int argc, char** argv)
 
 	case 0:
 	{
+		yyyTestSmoke();
 		TestSmoke();
 	}
 	break;

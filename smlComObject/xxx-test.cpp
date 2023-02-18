@@ -85,140 +85,141 @@ xObject
 ************************/
 
 
+#pragma region xxx
 
 namespace
 {
 	using namespace SmartLib;
 
 
-	class xIA0 : public smIObjectBase
+	class xxxIA0 : public smIObjectBase
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
 			// {2B5945A9-9A50-4C0E-A67B-24288A417900}
-			return smMetaTypeMaker::Make<xIA0, smIObjectBase>(
-				SM_NAME_OF(xIA0),
+			return smMetaTypeMaker::Make<xxxIA0, smIObjectBase>(
+				SM_NAME_OF(xxxIA0),
 				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x79, 0x00 } }
 			);
 		}
 
 	public:
-		virtual const char* f0_xIA0() = 0;
-		virtual const char* f1_xIA0() = 0;
-		virtual const char* f2_xIA0() = 0;
+		virtual const char* f0_xxxIA0() = 0;
+		virtual const char* f1_xxxIA0() = 0;
+		virtual const char* f2_xxxIA0() = 0;
 	};
 
-	class xIA1 : public smIObjectBase
+	class xxxIA1 : public smIObjectBase
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
 			// {2B5945A9-9A50-4C0E-A67B-24288A417900}
-			return smMetaTypeMaker::Make<xIA1, smIObjectBase>(
-				SM_NAME_OF(xIA1),
+			return smMetaTypeMaker::Make<xxxIA1, smIObjectBase>(
+				SM_NAME_OF(xxxIA1),
 				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x79, 0x01 } }
 			);
 		}
 
 	public:
-		virtual const char* f0_xIA1() = 0;
-		virtual const char* f1_xIA1() = 0;
-		virtual const char* f2_xIA1() = 0;
+		virtual const char* f0_xxxIA1() = 0;
+		virtual const char* f1_xxxIA1() = 0;
+		virtual const char* f2_xxxIA1() = 0;
 	};
 
-	class xIA2 : public smIObjectBase
+	class xxxIA2 : public smIObjectBase
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
 			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
-			return smMetaTypeMaker::Make<xIA2, smIObjectBase>(
-				SM_NAME_OF(xIA2),
+			return smMetaTypeMaker::Make<xxxIA2, smIObjectBase>(
+				SM_NAME_OF(xxxIA2),
 				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x79, 0x02 } }
 			);
 		}
 
 	public:
-		virtual const char* f0_xIA2() = 0;
-		virtual const char* f1_xIA2() = 0;
-		virtual const char* f2_xIA2() = 0;
+		virtual const char* f0_xxxIA2() = 0;
+		virtual const char* f1_xxxIA2() = 0;
+		virtual const char* f2_xxxIA2() = 0;
 	};
 
 
-	class xIB :
+	class xxxIB :
 		public smIObjectBase,
-		public xIA0,
-		public xIA1,
-		public xIA2
+		public xxxIA0,
+		public xxxIA1,
+		public xxxIA2
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
 			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
-			return smMetaTypeMaker::Make<xIB, smIObjectBase, xIA0, xIA1, xIA2>(
-				SM_NAME_OF(xIB),
+			return smMetaTypeMaker::Make<xxxIB, smIObjectBase, xxxIA0, xxxIA1, xxxIA2>(
+				SM_NAME_OF(xxxIB),
 				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x79, 0x03 } }
 			);
 		}
 
 	public:
-		virtual const char* f0_xIB() = 0;
-		virtual const char* f1_xIB() = 0;
-		virtual const char* f2_xIB() = 0;
+		virtual const char* f0_xxxIB() = 0;
+		virtual const char* f1_xxxIB() = 0;
+		virtual const char* f2_xxxIB() = 0;
 	};
 
-	class xIC :
+	class xxxIC :
 		public smIObjectBase,
-		public xIA0,
-		public xIA1,
-		public xIA2
+		public xxxIA0,
+		public xxxIA1,
+		public xxxIA2
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
 			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
-			return smMetaTypeMaker::Make<xIC, smIObjectBase, xIA0, xIA1, xIA2>(
-				SM_NAME_OF(xIC),
+			return smMetaTypeMaker::Make<xxxIC, smIObjectBase, xxxIA0, xxxIA1, xxxIA2>(
+				SM_NAME_OF(xxxIC),
 				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x79, 0x04 } }
 			);
 		}
 
 	public:
-		virtual const char* f0_xIC() = 0;
-		virtual const char* f1_xIC() = 0;
-		virtual const char* f2_xIC() = 0;
+		virtual const char* f0_xxxIC() = 0;
+		virtual const char* f1_xxxIC() = 0;
+		virtual const char* f2_xxxIC() = 0;
 	};
 
-	class xID :
+	class xxxID :
 		public smIObjectBase,
-		public xIA0,
-		public xIA1,
-		public xIA2
+		public xxxIA0,
+		public xxxIA1,
+		public xxxIA2
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
 			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
-			return smMetaTypeMaker::Make<xID, smIObjectBase, xIA0, xIA1, xIA2>(
-				SM_NAME_OF(xID),
+			return smMetaTypeMaker::Make<xxxID, smIObjectBase, xxxIA0, xxxIA1, xxxIA2>(
+				SM_NAME_OF(xxxID),
 				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x79, 0x05 } }
 			);
 		}
 
 	public:
-		virtual const char* f0_xID() = 0;
-		virtual const char* f1_xID() = 0;
-		virtual const char* f2_xID() = 0;
+		virtual const char* f0_xxxID() = 0;
+		virtual const char* f1_xxxID() = 0;
+		virtual const char* f2_xxxID() = 0;
 	};
 
-	class xObject : public smObjectBase<xIB, xIC, xID>
+	class xxxObject : public smObjectBase<xxxIB, xxxIC, xxxID>
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
-			return smMetaTypeMaker::Make<xObject, smObjectBase<xIB, xIC, xID>>(
-				SM_NAME_OF(xObject),
+			return smMetaTypeMaker::Make<xxxObject, smObjectBase<xxxIB, xxxIC, xxxID>>(
+				SM_NAME_OF(xxxObject),
 				// {D23257E5-A355-43AF-BBB4-6CB0A9D5EADA}
 				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x79, 0x06 } }
 			);
@@ -231,64 +232,25 @@ namespace
 
 	public:
 
-		virtual ~xObject()
+		virtual ~xxxObject()
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 		}
 
-		virtual const char* f0_xIA0() override
+		virtual const char* f0_xxxIA0() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 			return __FUNCTION__;
 		}
-		virtual const char* f1_xIA0() override
+		virtual const char* f1_xxxIA0() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 			return __FUNCTION__;
 		}
-		virtual const char* f2_xIA0() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-
-
-		virtual const char* f0_xIA1() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-		virtual const char* f1_xIA1() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-		virtual const char* f2_xIA1() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-
-		virtual const char* f0_xIA2() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-		virtual const char* f1_xIA2() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-		virtual const char* f2_xIA2() override
+		virtual const char* f2_xxxIA0() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
@@ -296,57 +258,96 @@ namespace
 		}
 
 
-		virtual const char* f0_xIB() override
+		virtual const char* f0_xxxIA1() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 			return __FUNCTION__;
 		}
-		virtual const char* f1_xIB() override
+		virtual const char* f1_xxxIA1() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 			return __FUNCTION__;
 		}
-		virtual const char* f2_xIB() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-
-		virtual const char* f0_xIC() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-		virtual const char* f1_xIC() override
-		{
-			using namespace ::std;
-			cout << __FUNCTION__ << endl;
-			return __FUNCTION__;
-		}
-		virtual const char* f2_xIC() override
+		virtual const char* f2_xxxIA1() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 			return __FUNCTION__;
 		}
 
-		virtual const char* f0_xID() override
+		virtual const char* f0_xxxIA2() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 			return __FUNCTION__;
 		}
-		virtual const char* f1_xID() override
+		virtual const char* f1_xxxIA2() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
 			return __FUNCTION__;
 		}
-		virtual const char* f2_xID() override
+		virtual const char* f2_xxxIA2() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+
+		virtual const char* f0_xxxIB() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_xxxIB() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_xxxIB() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+		virtual const char* f0_xxxIC() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_xxxIC() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_xxxIC() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+		virtual const char* f0_xxxID() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_xxxID() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_xxxID() override
 		{
 			using namespace ::std;
 			cout << __FUNCTION__ << endl;
@@ -382,42 +383,44 @@ namespace
 			TestComReg<smIObjectBase>();
 		}
 		{
-			auto [ptr, sp] = smQIHelper::QIRaw<xIA0>(unk);
+			auto [ptr, sp] = smQIHelper::QIRaw<xxxIA0>(unk);
 			assert(ptr);
-			TestComReg<xIA0>();
+			TestComReg<xxxIA0>();
 		}
 		{
-			auto [ptr, sp] = smQIHelper::QIRaw<xIA1>(unk);
+			auto [ptr, sp] = smQIHelper::QIRaw<xxxIA1>(unk);
 			assert(ptr);
-			TestComReg<xIA1>();
+			TestComReg<xxxIA1>();
 		}
 		{
-			auto [ptr, sp] = smQIHelper::QIRaw<xIA2>(unk);
+			auto [ptr, sp] = smQIHelper::QIRaw<xxxIA2>(unk);
 			assert(ptr);
-			TestComReg<xIA2>();
+			TestComReg<xxxIA2>();
 		}
 		{
-			auto [ptr, sp] = smQIHelper::QIRaw<xIB>(unk);
+			auto [ptr, sp] = smQIHelper::QIRaw<xxxIB>(unk);
 			assert(ptr);
-			TestComReg<xIB>();
+			TestComReg<xxxIB>();
 		}
 		{
-			auto [ptr, sp] = smQIHelper::QIRaw<xIC>(unk);
+			auto [ptr, sp] = smQIHelper::QIRaw<xxxIC>(unk);
 			assert(ptr);
-			TestComReg<xIC>();
+			TestComReg<xxxIC>();
 		}
 		{
-			auto [ptr, sp] = smQIHelper::QIRaw<xID>(unk);
+			auto [ptr, sp] = smQIHelper::QIRaw<xxxID>(unk);
 			assert(ptr);
-			TestComReg<xID>();
+			TestComReg<xxxID>();
 		}
 	}
 }
 
+#pragma endregion
+
 void TestSmoke()
 {
 	CComPtr<IUnknown> unk;
-	unk.Attach(xObject::StaticMetaType()->CreateInstance());
+	unk.Attach(xxxObject::StaticMetaType()->CreateInstance());
 	TestAllQI(unk);
 
 	{
@@ -432,108 +435,559 @@ void TestSmoke()
 
 
 	{
-		CComPtr<xIA0> ptr = smQIHelper::QI<xIA0>(unk);
+		CComPtr<xxxIA0> ptr = smQIHelper::QI<xxxIA0>(unk);
 		assert(ptr);
 
 		TestAllQI(ptr);
 
-		const char* fname0 = ptr->f0_xIA0();
-		const char* fname1 = ptr->f1_xIA0();
-		const char* fname2 = ptr->f2_xIA0();
+		const char* fname0 = ptr->f0_xxxIA0();
+		const char* fname1 = ptr->f1_xxxIA0();
+		const char* fname2 = ptr->f2_xxxIA0();
 
-		assert(strstr(fname0, SM_NAME_OF(f0_xIA0)));
-		assert(strstr(fname1, SM_NAME_OF(f1_xIA0)));
-		assert(strstr(fname2, SM_NAME_OF(f2_xIA0)));
+		assert(strstr(fname0, SM_NAME_OF(f0_xxxIA0)));
+		assert(strstr(fname1, SM_NAME_OF(f1_xxxIA0)));
+		assert(strstr(fname2, SM_NAME_OF(f2_xxxIA0)));
 	}
 
 
 	{
-		CComPtr<xIA1> ptr = smQIHelper::QI<xIA1>(unk);
+		CComPtr<xxxIA1> ptr = smQIHelper::QI<xxxIA1>(unk);
 		assert(ptr);
 
 		TestAllQI(ptr);
 
-		const char* fname0 = ptr->f0_xIA1();
-		const char* fname1 = ptr->f1_xIA1();
-		const char* fname2 = ptr->f2_xIA1();
+		const char* fname0 = ptr->f0_xxxIA1();
+		const char* fname1 = ptr->f1_xxxIA1();
+		const char* fname2 = ptr->f2_xxxIA1();
 
-		assert(strstr(fname0, SM_NAME_OF(f0_xIA1)));
-		assert(strstr(fname1, SM_NAME_OF(f1_xIA1)));
-		assert(strstr(fname2, SM_NAME_OF(f2_xIA1)));
+		assert(strstr(fname0, SM_NAME_OF(f0_xxxIA1)));
+		assert(strstr(fname1, SM_NAME_OF(f1_xxxIA1)));
+		assert(strstr(fname2, SM_NAME_OF(f2_xxxIA1)));
 	}
 
 	{
-		CComPtr<xIA2> ptr = smQIHelper::QI<xIA2>(unk);
+		CComPtr<xxxIA2> ptr = smQIHelper::QI<xxxIA2>(unk);
 		assert(ptr);
 
 		TestAllQI(ptr);
 
-		const char* fname0 = ptr->f0_xIA2();
-		const char* fname1 = ptr->f1_xIA2();
-		const char* fname2 = ptr->f2_xIA2();
+		const char* fname0 = ptr->f0_xxxIA2();
+		const char* fname1 = ptr->f1_xxxIA2();
+		const char* fname2 = ptr->f2_xxxIA2();
 
-		assert(strstr(fname0, SM_NAME_OF(f0_xIA2)));
-		assert(strstr(fname1, SM_NAME_OF(f1_xIA2)));
-		assert(strstr(fname2, SM_NAME_OF(f2_xIA2)));
+		assert(strstr(fname0, SM_NAME_OF(f0_xxxIA2)));
+		assert(strstr(fname1, SM_NAME_OF(f1_xxxIA2)));
+		assert(strstr(fname2, SM_NAME_OF(f2_xxxIA2)));
 	}
 
 	{
-		xID* ptr = nullptr;
+		xxxID* ptr = nullptr;
 		CComPtr<smIObjectBase> scope;
 		scope.Attach(ptr);
 	}
 
 
 	{
-		auto [ptr, sp] = smQIHelper::QIRaw<xIB>(unk);
+		auto [ptr, sp] = smQIHelper::QIRaw<xxxIB>(unk);
 		assert(ptr);
 
 		TestAllQI(sp);
 
-		const char* fname0 = ptr->f0_xIB();
-		const char* fname1 = ptr->f1_xIB();
-		const char* fname2 = ptr->f2_xIB();
+		const char* fname0 = ptr->f0_xxxIB();
+		const char* fname1 = ptr->f1_xxxIB();
+		const char* fname2 = ptr->f2_xxxIB();
 
-		assert(strstr(fname0, SM_NAME_OF(f0_xIB)));
-		assert(strstr(fname1, SM_NAME_OF(f1_xIB)));
-		assert(strstr(fname2, SM_NAME_OF(f2_xIB)));
+		assert(strstr(fname0, SM_NAME_OF(f0_xxxIB)));
+		assert(strstr(fname1, SM_NAME_OF(f1_xxxIB)));
+		assert(strstr(fname2, SM_NAME_OF(f2_xxxIB)));
 	}
 
 #if true
 	{
-		auto [ptr, sp] = smQIHelper::QIRaw<xIC>(unk);
+		auto [ptr, sp] = smQIHelper::QIRaw<xxxIC>(unk);
 		assert(ptr);
 
 		TestAllQI(sp);
 
-		const char* fname0 = ptr->f0_xIC();
-		const char* fname1 = ptr->f1_xIC();
-		const char* fname2 = ptr->f2_xIC();
+		const char* fname0 = ptr->f0_xxxIC();
+		const char* fname1 = ptr->f1_xxxIC();
+		const char* fname2 = ptr->f2_xxxIC();
 
-		assert(strstr(fname0, SM_NAME_OF(f0_xIC)));
-		assert(strstr(fname1, SM_NAME_OF(f1_xIC)));
-		assert(strstr(fname2, SM_NAME_OF(f2_xIC)));
+		assert(strstr(fname0, SM_NAME_OF(f0_xxxIC)));
+		assert(strstr(fname1, SM_NAME_OF(f1_xxxIC)));
+		assert(strstr(fname2, SM_NAME_OF(f2_xxxIC)));
 	}
 
 
 	{
-		auto [ptr, sp] = smQIHelper::QIRaw<xID>(unk);
+		auto [ptr, sp] = smQIHelper::QIRaw<xxxID>(unk);
 		assert(ptr);
 
 		TestAllQI(sp);
 
-		const char* fname0 = ptr->f0_xID();
-		const char* fname1 = ptr->f1_xID();
-		const char* fname2 = ptr->f2_xID();
+		const char* fname0 = ptr->f0_xxxID();
+		const char* fname1 = ptr->f1_xxxID();
+		const char* fname2 = ptr->f2_xxxID();
 
-		assert(strstr(fname0, SM_NAME_OF(f0_xID)));
-		assert(strstr(fname1, SM_NAME_OF(f1_xID)));
-		assert(strstr(fname2, SM_NAME_OF(f2_xID)));
+		assert(strstr(fname0, SM_NAME_OF(f0_xxxID)));
+		assert(strstr(fname1, SM_NAME_OF(f1_xxxID)));
+		assert(strstr(fname2, SM_NAME_OF(f2_xxxID)));
 	}
 #endif
 }
 
 
+#pragma region yyyyy
+
+namespace
+{
+	using namespace SmartLib;
+
+
+	class yyyIA0 : public smIObjectBase
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			// {2B5945A9-9A50-4C0E-A67B-24288A417900}
+			return smMetaTypeMaker::Make<yyyIA0, smIObjectBase>(
+				SM_NAME_OF(yyyIA0),
+				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x00, 0x00 } }
+			);
+		}
+
+	public:
+		virtual const char* f0_yyyIA0() = 0;
+		virtual const char* f1_yyyIA0() = 0;
+		virtual const char* f2_yyyIA0() = 0;
+	};
+
+	class yyyIA1 : public smIObjectBase
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			// {2B5945A9-9A50-4C0E-A67B-24288A417900}
+			return smMetaTypeMaker::Make<yyyIA1, smIObjectBase>(
+				SM_NAME_OF(yyyIA1),
+				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x01, 0x01 } }
+			);
+		}
+
+	public:
+		virtual const char* f0_yyyIA1() = 0;
+		virtual const char* f1_yyyIA1() = 0;
+		virtual const char* f2_yyyIA1() = 0;
+	};
+
+	class yyyIA2 : public smIObjectBase
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
+			return smMetaTypeMaker::Make<yyyIA2, smIObjectBase>(
+				SM_NAME_OF(yyyIA2),
+				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x02, 0x02 } }
+			);
+		}
+
+	public:
+		virtual const char* f0_yyyIA2() = 0;
+		virtual const char* f1_yyyIA2() = 0;
+		virtual const char* f2_yyyIA2() = 0;
+	};
+
+
+	class yyyIB :
+		public smIObjectBase,
+		public yyyIA0,
+		public yyyIA1,
+		public yyyIA2
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
+			return smMetaTypeMaker::Make<yyyIB, smIObjectBase, yyyIA0, yyyIA1, yyyIA2>(
+				SM_NAME_OF(yyyIB),
+				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x03, 0x03 } }
+			);
+		}
+
+	public:
+		virtual const char* f0_yyyIB() = 0;
+		virtual const char* f1_yyyIB() = 0;
+		virtual const char* f2_yyyIB() = 0;
+	};
+
+	class yyyIC :
+		public smIObjectBase,
+		public yyyIA0,
+		public yyyIA1,
+		public yyyIA2
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
+			return smMetaTypeMaker::Make<yyyIC, smIObjectBase, yyyIA0, yyyIA1, yyyIA2>(
+				SM_NAME_OF(yyyIC),
+				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x04, 0x04 } }
+			);
+		}
+
+	public:
+		virtual const char* f0_yyyIC() = 0;
+		virtual const char* f1_yyyIC() = 0;
+		virtual const char* f2_yyyIC() = 0;
+	};
+
+	class yyyID :
+		public smIObjectBase,
+		public yyyIA0,
+		public yyyIA1,
+		public yyyIA2
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			// {2B5945A9-9A50-4C0E-A67B-24288A417902}
+			return smMetaTypeMaker::Make<yyyID, smIObjectBase, yyyIA0, yyyIA1, yyyIA2>(
+				SM_NAME_OF(yyyID),
+				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x05, 0x05 } }
+			);
+		}
+
+	public:
+		virtual const char* f0_yyyID() = 0;
+		virtual const char* f1_yyyID() = 0;
+		virtual const char* f2_yyyID() = 0;
+	};
+
+	class yyyObject : public smObjectBase<yyyIB, yyyIC, yyyID>
+	{
+	public:
+		static const smMetaType* StaticMetaType()
+		{
+			return smMetaTypeMaker::Make<yyyObject, smObjectBase<yyyIB, yyyIC, yyyID>>(
+				SM_NAME_OF(yyyObject),
+				// {D23257E5-A355-43AF-BBB4-6CB0A9D5EADA}
+				GUID{ 0x2b5945a9, 0x9a50, 0x4c0e, { 0xa6, 0x7b, 0x24, 0x28, 0x8a, 0x41, 0x06, 0x06 } }
+			);
+		}
+
+		virtual const smMetaType* GetMetaType()  override
+		{
+			return StaticMetaType();
+		}
+
+	public:
+
+		virtual ~yyyObject()
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+		}
+
+		virtual const char* f0_yyyIA0() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_yyyIA0() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_yyyIA0() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+
+		virtual const char* f0_yyyIA1() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_yyyIA1() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_yyyIA1() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+		virtual const char* f0_yyyIA2() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_yyyIA2() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_yyyIA2() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+
+		virtual const char* f0_yyyIB() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_yyyIB() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_yyyIB() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+		virtual const char* f0_yyyIC() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_yyyIC() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_yyyIC() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+
+		virtual const char* f0_yyyID() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f1_yyyID() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+		virtual const char* f2_yyyID() override
+		{
+			using namespace ::std;
+			cout << __FUNCTION__ << endl;
+			return __FUNCTION__;
+		}
+	};
+
+
+	template<typename TTT>
+	static void yyyTestComReg()
+	{
+		auto* comReg = smComRegistry::SingleInstance();
+		auto* modName = smModuleHelper::GetCurrentModuleName();
+
+		const GUID& guid = smMetaTypeHelpers::UUID_OF<TTT>();
+		const smMetaType* mt0 = TTT::StaticMetaType();
+		auto* mt1 = comReg->Find(modName, guid);
+		auto* mt2 = comReg->Find(guid);
+
+		assert(mt0 == mt1 && mt0 == mt2);
+	}
+
+	static void yyyTestAllQI(IUnknown* unk)
+	{
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<smIUnknown>(unk);
+			assert(ptr);
+			yyyTestComReg<smIUnknown>();
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<smIObjectBase>(unk);
+			assert(ptr);
+			yyyTestComReg<smIObjectBase>();
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<yyyIA0>(unk);
+			assert(ptr);
+			yyyTestComReg<yyyIA0>();
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<yyyIA1>(unk);
+			assert(ptr);
+			yyyTestComReg<yyyIA1>();
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<yyyIA2>(unk);
+			assert(ptr);
+			yyyTestComReg<yyyIA2>();
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<yyyIB>(unk);
+			assert(ptr);
+			yyyTestComReg<yyyIB>();
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<yyyIC>(unk);
+			assert(ptr);
+			yyyTestComReg<yyyIC>();
+		}
+		{
+			auto [ptr, sp] = smQIHelper::QIRaw<yyyID>(unk);
+			assert(ptr);
+			yyyTestComReg<yyyID>();
+		}
+	}
+}
+
+void yyyTestSmoke()
+{
+	CComPtr<IUnknown> unk;
+	unk.Attach(yyyObject::StaticMetaType()->CreateInstance());
+	yyyTestAllQI(unk);
+
+	{
+		CComPtr<smIUnknown> unkTemp = smQIHelper::QI<smIUnknown>(unk);
+		assert(unkTemp);
+		yyyTestAllQI(unkTemp);
+
+		CComPtr<smIObjectBase> obTemp = smQIHelper::QI<smIObjectBase>(unk);
+		assert(obTemp);
+		yyyTestAllQI(obTemp);
+	}
+
+
+	{
+		CComPtr<yyyIA0> ptr = smQIHelper::QI<yyyIA0>(unk);
+		assert(ptr);
+
+		yyyTestAllQI(ptr);
+
+		const char* fname0 = ptr->f0_yyyIA0();
+		const char* fname1 = ptr->f1_yyyIA0();
+		const char* fname2 = ptr->f2_yyyIA0();
+
+		assert(strstr(fname0, SM_NAME_OF(f0_yyyIA0)));
+		assert(strstr(fname1, SM_NAME_OF(f1_yyyIA0)));
+		assert(strstr(fname2, SM_NAME_OF(f2_yyyIA0)));
+	}
+
+
+	{
+		CComPtr<yyyIA1> ptr = smQIHelper::QI<yyyIA1>(unk);
+		assert(ptr);
+
+		yyyTestAllQI(ptr);
+
+		const char* fname0 = ptr->f0_yyyIA1();
+		const char* fname1 = ptr->f1_yyyIA1();
+		const char* fname2 = ptr->f2_yyyIA1();
+
+		assert(strstr(fname0, SM_NAME_OF(f0_yyyIA1)));
+		assert(strstr(fname1, SM_NAME_OF(f1_yyyIA1)));
+		assert(strstr(fname2, SM_NAME_OF(f2_yyyIA1)));
+	}
+
+	{
+		CComPtr<yyyIA2> ptr = smQIHelper::QI<yyyIA2>(unk);
+		assert(ptr);
+
+		yyyTestAllQI(ptr);
+
+		const char* fname0 = ptr->f0_yyyIA2();
+		const char* fname1 = ptr->f1_yyyIA2();
+		const char* fname2 = ptr->f2_yyyIA2();
+
+		assert(strstr(fname0, SM_NAME_OF(f0_yyyIA2)));
+		assert(strstr(fname1, SM_NAME_OF(f1_yyyIA2)));
+		assert(strstr(fname2, SM_NAME_OF(f2_yyyIA2)));
+	}
+
+	{
+		yyyID* ptr = nullptr;
+		CComPtr<smIObjectBase> scope;
+		scope.Attach(ptr);
+	}
+
+
+	{
+		auto [ptr, sp] = smQIHelper::QIRaw<yyyIB>(unk);
+		assert(ptr);
+
+		yyyTestAllQI(sp);
+
+		const char* fname0 = ptr->f0_yyyIB();
+		const char* fname1 = ptr->f1_yyyIB();
+		const char* fname2 = ptr->f2_yyyIB();
+
+		assert(strstr(fname0, SM_NAME_OF(f0_yyyIB)));
+		assert(strstr(fname1, SM_NAME_OF(f1_yyyIB)));
+		assert(strstr(fname2, SM_NAME_OF(f2_yyyIB)));
+	}
+
+#if true
+	{
+		auto [ptr, sp] = smQIHelper::QIRaw<yyyIC>(unk);
+		assert(ptr);
+
+		yyyTestAllQI(sp);
+
+		const char* fname0 = ptr->f0_yyyIC();
+		const char* fname1 = ptr->f1_yyyIC();
+		const char* fname2 = ptr->f2_yyyIC();
+
+		assert(strstr(fname0, SM_NAME_OF(f0_yyyIC)));
+		assert(strstr(fname1, SM_NAME_OF(f1_yyyIC)));
+		assert(strstr(fname2, SM_NAME_OF(f2_yyyIC)));
+	}
+
+
+	{
+		auto [ptr, sp] = smQIHelper::QIRaw<yyyID>(unk);
+		assert(ptr);
+
+		yyyTestAllQI(sp);
+
+		const char* fname0 = ptr->f0_yyyID();
+		const char* fname1 = ptr->f1_yyyID();
+		const char* fname2 = ptr->f2_yyyID();
+
+		assert(strstr(fname0, SM_NAME_OF(f0_yyyID)));
+		assert(strstr(fname1, SM_NAME_OF(f1_yyyID)));
+		assert(strstr(fname2, SM_NAME_OF(f2_yyyID)));
+	}
+#endif
+}
+
+
+#pragma endregion
 
 #if true
 
@@ -543,18 +997,18 @@ namespace
 {
 	//for interface 
 	//multiple inheritance for interface is supported
-	class yyyInterface :
+	class zzzInterface :
 		public smIObjectBase,
-		public xIB,	//to change...
-		public xIC,	//to change...
-		public xID	//to change...
+		public xxxIB,	//to change...
+		public xxxIC,	//to change...
+		public xxxID	//to change...
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
-			return smMetaTypeMaker::Make<yyyInterface, smIObjectBase, xIB, xIC, xID> //to change...
+			return smMetaTypeMaker::Make<zzzInterface, smIObjectBase, xxxIB, xxxIC, xxxID> //to change...
 				(
-					SM_NAME_OF(yyyInterface),//to change...
+					SM_NAME_OF(zzzInterface),//to change...
 					GUID{ GUID_NULL }//to change...
 			);
 		}
@@ -566,16 +1020,16 @@ namespace
 
 
 	//for class
-	//yyyObject should and must be singly inherited by smObjectBase<...>
-	class yyyObject :
-		public smObjectBase<xIB, xIC, xID> //to change...
+	//zzzObject should and must be singly inherited by smObjectBase<...>
+	class zzzObject :
+		public smObjectBase<xxxIB, xxxIC, xxxID> //to change...
 	{
 	public:
 		static const smMetaType* StaticMetaType()
 		{
-			return smMetaTypeMaker::Make<yyyObject, smObjectBase<xIB, xIC, xID>> //to change...
+			return smMetaTypeMaker::Make<zzzObject, smObjectBase<xxxIB, xxxIC, xxxID>> //to change...
 				(
-					SM_NAME_OF(yyyObject), //to change...
+					SM_NAME_OF(zzzObject), //to change...
 					GUID{ GUID_NULL } //to change...
 			);
 		}

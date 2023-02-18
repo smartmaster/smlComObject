@@ -21,6 +21,14 @@ namespace SmartLib
 			std::unordered_map<GUID, const smMetaType*, smGUIDHasher, smGUIDEqual>
 		>;
 		MOD_GUID_META_MAP _maps;
+
+		using MOD_GUID_META_MMAP = std::unordered_map<
+			std::string,
+			std::unordered_multimap<GUID, const smMetaType*, smGUIDHasher, smGUIDEqual>
+		>;
+		MOD_GUID_META_MAP _mmaps;
+
+
 		mutable std::shared_mutex _rwMtx;
 		
 	public:
