@@ -355,39 +355,61 @@ namespace
 	};
 
 
+	template<typename TTT>
+	static void TestComReg()
+	{
+		auto* comReg = smComRegistry::SingleInstance();
+		auto* modName = smModuleHelper::GetCurrentModuleName();
+
+		const GUID& guid = smMetaTypeHelpers::UUID_OF<TTT>();
+		const smMetaType* mt0 = TTT::StaticMetaType();
+		auto* mt1 = comReg->Find(modName, guid);
+		auto* mt2 = comReg->Find(guid);
+
+		assert(mt0 == mt1 && mt0 == mt2);
+	}
+
 	static void TestAllQI(IUnknown* unk)
 	{
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<smIUnknown>(unk);
 			assert(ptr);
+			TestComReg<smIUnknown>();
 		}
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<smIObjectBase>(unk);
 			assert(ptr);
+			TestComReg<smIObjectBase>();
 		}
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<xIA0>(unk);
 			assert(ptr);
+			TestComReg<xIA0>();
 		}
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<xIA1>(unk);
 			assert(ptr);
+			TestComReg<xIA1>();
 		}
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<xIA2>(unk);
 			assert(ptr);
+			TestComReg<xIA2>();
 		}
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<xIB>(unk);
 			assert(ptr);
+			TestComReg<xIB>();
 		}
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<xIC>(unk);
 			assert(ptr);
+			TestComReg<xIC>();
 		}
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<xID>(unk);
 			assert(ptr);
+			TestComReg<xID>();
 		}
 	}
 }

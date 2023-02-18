@@ -6,6 +6,8 @@
 #include "smMetaType.h"
 #include "smPtrHelpers.h"
 #include "smIObjectBaseHelpers.h"
+#include "smComRegistry.h"
+#include "smModuleHelper.h"
 
 namespace SmartLib
 {
@@ -52,7 +54,12 @@ namespace SmartLib
 				{
 					mt.SetCreateInstanceMethod(smIObjectBaseHelpers::CreateInstance<TClass>);
 				}
+				auto* comReg = smComRegistry::SingleInstance();
+				auto* modName = smModuleHelper::GetCurrentModuleName();
+				comReg->Add(modName, &mt);
 			});
+
+			//assert(TClass::StaticMetaType() == &mt);
 
 			return &mt;
 		}
