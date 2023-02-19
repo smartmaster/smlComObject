@@ -29,6 +29,19 @@ int main(int argc, char** argv)
 		//	Test_xxx();
 		//}
 		//break;
+	case 99999:
+	{
+		//all test at once
+		TestFullRawAgg();
+		TestFullRaw();
+		TestFull();
+		TestVecHash();
+		Test_smGetMoudleName();
+		TestFull();
+		yyyTestSmoke();
+		TestSmoke();
+	}
+	break;
 	case 5:
 	{
 		TestFullRawAgg();

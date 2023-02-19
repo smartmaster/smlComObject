@@ -6,6 +6,7 @@
 #include "smIObjectBase.h"
 #include "smMetaType.h"
 #include "smMetaTypeHelpers.h"
+#include "smGUIDHelper.h"
 
 namespace SmartLib
 {
@@ -19,6 +20,12 @@ namespace SmartLib
 		std::vector<smIObjectBase*> _inners;
 		std::vector<smIObjectBase*> _comBaseInners; //weak ref, life time is managed by _inners
 		std::atomic<ULONG> _refCount;
+
+		std::unordered_map<GUID, void*, smGUIDHasher, smGUIDEqual> _cachedQI;
+
+		size_t _hitCount{ 0 };
+		size_t _missingCount{ 0 };
+		size_t _validQICount{ 0 };
 
 	public:
 
@@ -54,10 +61,35 @@ namespace SmartLib
 		{
 			assert(ppvObject);
 
-			return _outter ?
-				_outter->QueryInterface(riid, ppvObject) :
-				QueryInterfaceInner(riid, ppvObject);
+			HRESULT hr = E_NOINTERFACE;
 
+			//enable cache optimization in QueryInterface (not in QueryInterfaceInner to save memory)
+			//test cache first
+			auto iter = _cachedQI.find(riid);
+			if (iter != _cachedQI.end())
+			{
+				++_hitCount;
+				*ppvObject = iter->second;
+				assert(*ppvObject);
+				AddRef();
+				hr = S_OK;
+			}
+			else
+			{
+				++_missingCount;
+				hr = _outter ?
+					_outter->QueryInterface(riid, ppvObject) :
+					QueryInterfaceInner(riid, ppvObject);
+
+				//add to cache here
+				if (SUCCEEDED(hr) && *ppvObject)
+				{
+					++_validQICount;
+					_cachedQI.insert({ riid, *ppvObject });
+				}
+			}
+
+			return hr;
 		}
 
 		virtual ULONG STDMETHODCALLTYPE AddRef(void) override
