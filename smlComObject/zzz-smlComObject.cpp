@@ -10,6 +10,7 @@ void yyyTestSmoke();
 void Test_smGetMoudleName();
 void TestVecHash();
 void TestFullRaw();
+void TestFullRawAgg();
 
 int main(int argc, char** argv)
 {
@@ -28,6 +29,11 @@ int main(int argc, char** argv)
 		//	Test_xxx();
 		//}
 		//break;
+	case 5:
+	{
+		TestFullRawAgg();
+	}
+	break;
 
 	case 4:
 	{

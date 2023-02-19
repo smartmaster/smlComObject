@@ -18,7 +18,7 @@ void SmartLib::smMetaType::AddCppBaseOffset(const smMetaType* mt, ptrdiff_t offs
 
 void SmartLib::smMetaType::AddComBase(const smMetaType* mt)
 {
-	_comBases.emplace_back(mt);
+	_comBaseInners.emplace_back(mt);
 }
 
 void SmartLib::smMetaType::SetCreateInstanceMethod(pfnCreateInstance ci)
@@ -41,7 +41,7 @@ const SmartLib::smMetaType* SmartLib::smMetaType::FindComMetaType(const GUID& gu
 	}
 	else
 	{
-		for (auto comBase : _comBases)
+		for (auto comBase : _comBaseInners)
 		{
 			mt = comBase->FindComMetaType(guid); //recursively
 			if (mt)

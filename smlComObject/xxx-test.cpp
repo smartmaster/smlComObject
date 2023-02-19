@@ -230,7 +230,7 @@ namespace
 			);
 		}
 
-		virtual const smMetaType* GetMetaType()  override
+		virtual const smMetaType* GetMetaTypeInner() const override
 		{
 			return StaticMetaType();
 		}
@@ -685,7 +685,7 @@ namespace
 			);
 		}
 
-		virtual const smMetaType* GetMetaType()  override
+		virtual const smMetaType* GetMetaTypeInner() const override
 		{
 			return StaticMetaType();
 		}
@@ -1071,7 +1071,7 @@ namespace
 			);
 		}
 
-		virtual const smMetaType* GetMetaType()  override
+		virtual const smMetaType* GetMetaTypeInner() const override
 		{
 			return StaticMetaType();
 		}

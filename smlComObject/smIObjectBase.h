@@ -57,10 +57,15 @@ namespace SmartLib
 
 		virtual void SetOutter(smIObjectBase* outter) = 0;
 		virtual HRESULT Aggragate(smIObjectBase* inner) = 0;
+		virtual HRESULT AggragateComBase(smIObjectBase* comBaseInner) = 0;
 
-		virtual const smMetaType* GetMetaType() = 0;
-		virtual const bool IsMetaType(const GUID& clsid) const = 0;
-		virtual const bool IsMetaTypeOf(const GUID& clsid) const = 0;
+		virtual const smMetaType* GetMetaTypeInner() const = 0;
+
+		virtual smIObjectBase* GetImplInner() = 0;
+		virtual smIObjectBase* GetImplOutter() = 0;
+
+		virtual const bool InnerIsMetaType(const GUID& clsid) const = 0;
+		virtual const bool InnerIsMetaTypeOf(const GUID& clsid) const = 0;
 	};
 }
 
@@ -109,7 +114,7 @@ namespace
 			);
 		}
 
-		virtual const smMetaType* GetMetaType()  override
+		virtual const smMetaType* GetMetaTypeInner()  override
 		{
 			return StaticMetaType();
 	}

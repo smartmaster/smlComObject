@@ -17,7 +17,7 @@ namespace SmartLib
 		const char* _name{ nullptr };
 		GUID _guid{ 0 };
 		std::vector<std::tuple<const smMetaType*, ptrdiff_t>> _cppBaseOffsets;
-		std::vector<const smMetaType*> _comBases;
+		std::vector<const smMetaType*> _comBaseInners;
 		pfnCreateInstance _pfnCreateInstance{ nullptr };
 
 	public:

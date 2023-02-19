@@ -17,7 +17,7 @@ namespace SmartLib
 	private:
 		smIObjectBase* _outter{ nullptr };
 		std::vector<smIObjectBase*> _inners;
-		std::vector<smIObjectBase*> _comBases;
+		std::vector<smIObjectBase*> _comBaseInners; //weak ref, life time is managed by _inners
 		std::atomic<ULONG> _refCount;
 
 	public:
@@ -31,38 +31,9 @@ namespace SmartLib
 			);
 		}
 
-		virtual const smMetaType* GetMetaType()  override
+		virtual const smMetaType* GetMetaTypeInner() const override
 		{
 			return StaticMetaType();
-		}
-
-		virtual const bool IsMetaType(const GUID& clsid) const override
-		{
-			assert(false);
-			return false;
-
-			//auto* mt = GetMetaType();
-			//return IsEqualGUID(mt->GetID(), clsid);
-		}
-
-		virtual const bool IsMetaTypeOf(const GUID& clsid)  const override
-		{
-			assert(false);
-			return false;
-
-			//bool found = IsMetaType(clsid);
-			//if (!found)
-			//{
-			//	for (auto* combase : _comBases)
-			//	{
-			//		found = combase->IsMetaTypeOf(clsid); //recursiely
-			//		if (found)
-			//		{
-			//			break;
-			//		}
-			//	}
-			//}
-			//return found;
 		}
 
 	public:
@@ -74,12 +45,15 @@ namespace SmartLib
 				inner->ReleaseInner();
 			}
 			_inners.clear();
+			_comBaseInners.clear();
 		}
 
 		virtual HRESULT STDMETHODCALLTYPE QueryInterface(
 			/* [in] */ REFIID riid,
 			/* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR* __RPC_FAR* ppvObject) override
 		{
+			assert(ppvObject);
+
 			return _outter ?
 				_outter->QueryInterface(riid, ppvObject) :
 				QueryInterfaceInner(riid, ppvObject);
@@ -105,7 +79,7 @@ namespace SmartLib
 			void** ppvObject) override
 		{
 			HRESULT hr = E_NOINTERFACE;
-			const smMetaType* const mt = GetMetaType();
+			const smMetaType* const mt = GetMetaTypeInner();
 			ptrdiff_t offset = mt->FindCppOffset(riid, 0);
 			if (offset >= 0)
 			{
@@ -154,7 +128,7 @@ namespace SmartLib
 		}
 
 		//the life time of inner is managed by outter
-		//should all PostAggragate() afterwards
+		//all PostAggragate() after calling it
 		virtual HRESULT Aggragate(smIObjectBase* inner) override
 		{
 			assert(inner);
@@ -165,6 +139,62 @@ namespace SmartLib
 			inner->SetOutter(static_cast<smIObjectBase*>(this));
 			_inners.emplace_back(inner);
 			return S_OK;
+		}
+
+
+		//the life time of inner is managed by outter
+		//all PostAggragate() after calling it
+		virtual HRESULT AggragateComBase(smIObjectBase* comBaseInner) override
+		{
+			assert(comBaseInner);
+			assert(std::find(_inners.begin(), _inners.end(), comBaseInner) == _inners.end());
+			assert(std::find(_comBaseInners.begin(), _comBaseInners.end(), comBaseInner) == _comBaseInners.end());
+			_comBaseInners.emplace_back(comBaseInner);
+			//inner->SetOutter(nullptr);
+			//inner->AddRef(); //must AddRef first (before SetOutter)
+			//inner->AddRefInner();
+			comBaseInner->SetOutter(static_cast<smIObjectBase*>(this));
+			_inners.emplace_back(comBaseInner);
+			return S_OK;
+		}
+
+		virtual const bool InnerIsMetaType(const GUID& clsid) const override
+		{
+			const auto* mt = GetMetaTypeInner();
+			return IsEqualGUID(mt->GetID(), clsid);
+		}
+
+		virtual const bool InnerIsMetaTypeOf(const GUID& clsid)  const override
+		{
+			//assert(false);
+			//return false;
+
+			bool found = InnerIsMetaType(clsid);
+			if (!found)
+			{
+				for (auto* combase : _comBaseInners)
+				{
+					found = combase->InnerIsMetaTypeOf(clsid); //recursively
+					if (found)
+					{
+						break;
+					}
+				}
+			}
+			return found;
+		}
+
+
+		virtual smIObjectBase* GetImplInner() override
+		{
+			return static_cast<smIObjectBase*>(this);
+		}
+
+		virtual smIObjectBase* GetImplOutter()  override
+		{
+			return _outter ?
+				_outter->GetImplOutter() //recursively 
+				: GetImplInner();
 		}
 	};
 }
