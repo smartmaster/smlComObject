@@ -1,7 +1,9 @@
 
 #include <cassert>
-#include "smMetaType.h"
+#include <sstream>
 
+#include "smMetaType.h"
+#include "smGUIDHelper.h"
 
 
 SmartLib::smMetaType::smMetaType(const char* name, const GUID& guid) :
@@ -16,10 +18,12 @@ void SmartLib::smMetaType::AddCppBaseOffset(const smMetaType* mt, ptrdiff_t offs
 	_cppBaseOffsets.emplace_back(mt, offset);
 }
 
+#if false
 void SmartLib::smMetaType::AddComBase(const smMetaType* mt)
 {
 	_comBaseInners.emplace_back(mt);
 }
+#endif
 
 void SmartLib::smMetaType::SetCreateInstanceMethod(pfnCreateInstance ci)
 {
@@ -32,6 +36,8 @@ IUnknown* SmartLib::smMetaType::CreateInstance() const
 	return _pfnCreateInstance();
 }
 
+
+#if false
 const SmartLib::smMetaType* SmartLib::smMetaType::FindComMetaType(const GUID& guid) const
 {
 	const smMetaType* mt = nullptr;
@@ -52,6 +58,8 @@ const SmartLib::smMetaType* SmartLib::smMetaType::FindComMetaType(const GUID& gu
 	}
 	return mt;
 }
+#endif
+
 
 ptrdiff_t SmartLib::smMetaType::FindCppOffset(const GUID& guid, ptrdiff_t currentOffset) const
 {
@@ -73,4 +81,19 @@ ptrdiff_t SmartLib::smMetaType::FindCppOffset(const GUID& guid, ptrdiff_t curren
 		}
 	}
 	return offset;
+}
+
+void SmartLib::smMetaType::Print(int level, std::ostream& out) const
+{
+	for (int ii = 0; ii < level; ++ ii) { out << '\t';}
+	out << _name << ", " << smGUIDToString::ToString(_guid) << "\r\n";
+	for (const auto [cppbase, _ignore] : _cppBaseOffsets)
+	{
+		cppbase->Print(level + 1, out);
+	}
+}
+
+void SmartLib::smMetaType::Print(int level) const
+{
+	Print(level, std::cout);
 }

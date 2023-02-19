@@ -426,8 +426,29 @@ void TestFullRaw()
 	{
 		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
 		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
+
+		std::cout << "before horizontal extension, the separate object is:" << endl;
+		outter->GetImplOutter()->Print();
+		inner->GetImplOutter()->Print();
+
+	}
+
+	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
+	{
+		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
+		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
 		outter->Aggragate(inner);
 		//smIObjectBaseHelpers::PostAggrate(objects[ii + 1]);
+	}
+
+	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
+	{
+		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
+		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
+
+		std::cout << "after horizontal extension, the separate object is:" << endl;
+		outter->GetImplOutter()->Print();
+		inner->GetImplOutter()->Print();
 	}
 
 	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
@@ -591,8 +612,29 @@ void TestFull()
 	{
 		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii].p);
 		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1].p);
+
+		std::cout << "before horizontal extension, the separate object is:" << endl;
+		outter->GetImplOutter()->Print();
+		inner->GetImplOutter()->Print();
+
+	}
+
+	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
+	{
+		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii].p);
+		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1].p);
 		outter->Aggragate(inner);
 		//smIObjectBaseHelpers::PostAggrate(objects[ii + 1]);
+	}
+
+	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
+	{
+		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii].p);
+		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1].p);
+
+		std::cout << "after horizontal extension, the separate object is:" << endl;
+		outter->GetImplOutter()->Print();
+		inner->GetImplOutter()->Print();
 	}
 
 	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
@@ -753,13 +795,34 @@ void TestFullRawAgg()
 	{
 		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
 		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
+
+		std::cout << "before vertical extension, the separate object is:" << endl;
+		outter->GetImplOutter()->Print();
+		inner->GetImplOutter()->Print();
+
+	}
+
+	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
+	{
+		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
+		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
 		outter->AggragateComBase(inner);
 		//smIObjectBaseHelpers::PostAggrate(objects[ii + 1]);
 	}
 
 	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
 	{
-		smPostAggrageOp<IUnknown>::PostAggrate(objects[ii + 1]);
+		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
+		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
+
+		std::cout << "after vertical extension, the separate object is:" << endl;
+		outter->GetImplOutter()->Print();
+		inner->GetImplOutter()->Print();
+	}
+
+	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
+	{
+		smPostAggrageOp<IUnknown>::PostAggrate(objects[ii + 1]); //do not forget after AggragateComBase
 	}
 
 	const GUID& derivedGUID = vecClass[0]->GetID();

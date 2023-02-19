@@ -56,8 +56,8 @@ namespace SmartLib
 		virtual ULONG ReleaseInner(void) = 0;
 
 		virtual void SetOutter(smIObjectBase* outter) = 0;
-		virtual HRESULT Aggragate(smIObjectBase* inner) = 0;
-		virtual HRESULT AggragateComBase(smIObjectBase* comBaseInner) = 0;
+		virtual HRESULT Aggragate(smIObjectBase*& inner) = 0;
+		virtual HRESULT AggragateComBase(smIObjectBase*& comBaseInner) = 0;
 
 		virtual const smMetaType* GetMetaTypeInner() const = 0;
 
@@ -66,6 +66,8 @@ namespace SmartLib
 
 		virtual const bool InnerIsMetaType(const GUID& clsid) const = 0;
 		virtual const bool InnerIsMetaTypeOf(const GUID& clsid) const = 0;
+
+		virtual void Print() const = 0;
 	};
 }
 
