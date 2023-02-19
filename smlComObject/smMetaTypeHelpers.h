@@ -50,6 +50,7 @@ namespace SmartLib
 			static std::once_flag onceflag;
 			std::call_once(onceflag, []() {
 				smMetaCppBase<TClass, TBases...>::Add(&mt);
+				mt.EnumCppOffset();
 				if constexpr (!std::is_abstract_v<TClass>)
 				{
 					mt.SetCreateInstanceMethod(smIObjectBaseHelpers::CreateInstance<TClass>);

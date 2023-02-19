@@ -63,24 +63,52 @@ const SmartLib::smMetaType* SmartLib::smMetaType::FindComMetaType(const GUID& gu
 
 ptrdiff_t SmartLib::smMetaType::FindCppOffset(const GUID& guid, ptrdiff_t currentOffset) const
 {
-	ptrdiff_t offset = -1; //<0 means not found
-
-	if (::IsEqualGUID(guid, _guid))
+	constexpr int useCache = 1;
+	if constexpr (useCache)
 	{
-		offset = currentOffset;
+		ptrdiff_t offset = -1; //<0 means not found
+		auto iter = _cachedOffsets.find(guid);
+		if (iter != _cachedOffsets.end())
+		{
+			offset = iter->second;
+		}
+		return offset;
 	}
 	else
 	{
-		for (auto [baseMT, baseOff] : _cppBaseOffsets)
+		ptrdiff_t offset = -1; //<0 means not found
+		
+		if (::IsEqualGUID(guid, _guid))
 		{
-			offset = baseMT->FindCppOffset(guid, currentOffset + baseOff); //recursively
-			if (offset >= 0)
+			offset = currentOffset;
+		}
+		else
+		{
+			for (auto [baseMT, baseOff] : _cppBaseOffsets)
 			{
-				break;
+				offset = baseMT->FindCppOffset(guid, currentOffset + baseOff); //recursively
+				if (offset >= 0)
+				{
+					break;
+				}
 			}
 		}
+		return offset;
 	}
-	return offset;
+}
+
+void SmartLib::smMetaType::EnumCppOffset(ptrdiff_t curoffset, std::unordered_map<GUID, ptrdiff_t, smGUIDHasher, smGUIDEqual>& cachedOffsets)
+{
+	cachedOffsets.insert({ _guid, curoffset });
+	for (auto [cppBase, offset] : _cppBaseOffsets)
+	{
+		const_cast<smMetaType*>(cppBase)->EnumCppOffset(curoffset + offset, cachedOffsets); //recursively
+	}
+}
+
+void SmartLib::smMetaType::EnumCppOffset()
+{
+	EnumCppOffset(0, _cachedOffsets);
 }
 
 void SmartLib::smMetaType::Print(int level, std::ostream& out) const
