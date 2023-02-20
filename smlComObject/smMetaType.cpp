@@ -71,6 +71,7 @@ ptrdiff_t SmartLib::smMetaType::FindCppOffset(const GUID& guid, ptrdiff_t curren
 		if (iter != _cachedOffsets.end())
 		{
 			offset = iter->second;
+			assert(offset >= 0);
 		}
 		return offset;
 	}
@@ -117,7 +118,7 @@ void SmartLib::smMetaType::Print(int level, std::ostream& out) const
 	out << _name << ", " << smGUIDToString::ToString(_guid) << "\r\n";
 	for (const auto [cppbase, _ignore] : _cppBaseOffsets)
 	{
-		cppbase->Print(level + 1, out);
+		cppbase->Print(level + 1, out); //recursively
 	}
 }
 
