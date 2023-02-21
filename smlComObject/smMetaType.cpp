@@ -122,17 +122,17 @@ void SmartLib::smMetaType::EnumCppOffset()
 	EnumCppOffset(0, _cachedOffsets);
 }
 
-void SmartLib::smMetaType::Print(int level, std::ostream& out) const
+void SmartLib::smMetaType::Print(int level, ptrdiff_t curOffset, std::ostream& out) const
 {
 	for (int ii = 0; ii < level; ++ ii) { out << '\t';}
-	out << _name << ", " << smGUIDToString::ToString(_guid) << "\r\n";
-	for (const auto [cppbase, _ignore] : _cppBaseOffsets)
+	out << _name << ", " << smGUIDToString::ToString(_guid) << ", @" << curOffset << "\r\n";
+	for (const auto [cppbase, cppbaseOffset] : _cppBaseOffsets)
 	{
-		cppbase->Print(level + 1, out); //recursively
+		cppbase->Print(level + 1, curOffset + cppbaseOffset, out); //recursively
 	}
 }
 
-void SmartLib::smMetaType::Print(int level) const
+void SmartLib::smMetaType::Print(int level, ptrdiff_t curOffset) const
 {
-	Print(level, std::cout);
+	Print(level, curOffset, std::cout);
 }

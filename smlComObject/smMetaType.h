@@ -25,7 +25,7 @@ namespace SmartLib
 		std::unordered_map<GUID, ptrdiff_t, smGUIDHasher, smGUIDEqual> _cachedOffsets;
 
 	private:
-		void Print(int level, std::ostream& out) const; //do not export as it has std::### prarams
+		void Print(int level, ptrdiff_t curOffset, std::ostream& out) const; //do not export as it has std::### prarams
 
 		void EnumCppOffset(ptrdiff_t curffset, std::unordered_map<GUID, ptrdiff_t, smGUIDHasher, smGUIDEqual>& cachedOffsets);
 
@@ -48,6 +48,6 @@ namespace SmartLib
 
 		void EnumCppOffset();
 
-		void Print(int level) const;
+		void Print(int level, ptrdiff_t curOffset) const;
 	};
 }

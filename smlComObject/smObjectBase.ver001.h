@@ -284,14 +284,14 @@ namespace SmartLib
 			auto* mt = GetMetaTypeInner();
 
 			std::cout << "CPP hierarchy:" << "\r\n";
-			mt->Print(0);
+			mt->Print(0, 0);
 			std::cout << "\r\n";
 
 			std::cout << "Horizontal extensions" << "\r\n";
 			for (auto inner : _inners)
 			{
 				auto* mt = inner->GetMetaTypeInner();
-				mt->Print(0);
+				mt->Print(0, 0);
 				std::cout << "\r\n";
 			}
 
@@ -299,7 +299,7 @@ namespace SmartLib
 			for (auto cbinner : _comBaseInners)
 			{
 				auto* mt = cbinner->GetMetaTypeInner();
-				mt->Print(0);
+				mt->Print(0, 0);
 				std::cout << "\r\n";
 			}
 
