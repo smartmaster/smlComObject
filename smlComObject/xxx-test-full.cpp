@@ -437,7 +437,7 @@ void TestFullRaw()
 	{
 		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
 		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
-		outter->Aggragate(inner);
+		outter->Aggragate(std::move(inner));
 		//smIObjectBaseHelpers::PostAggrate(objects[ii + 1]);
 	}
 
@@ -623,7 +623,7 @@ void TestFull()
 	{
 		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii].p);
 		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1].p);
-		outter->Aggragate(inner);
+		outter->Aggragate(std::move(inner));
 		//smIObjectBaseHelpers::PostAggrate(objects[ii + 1]);
 	}
 
@@ -806,7 +806,7 @@ void TestFullRawAgg()
 	{
 		smIObjectBase* outter = static_cast<smIObjectBase*>(objects[ii]);
 		smIObjectBase* inner = static_cast<smIObjectBase*>(objects[ii + 1]);
-		outter->AggragateComBase(inner);
+		outter->AggragateComBase(std::move(inner));
 		//smIObjectBaseHelpers::PostAggrate(objects[ii + 1]);
 	}
 

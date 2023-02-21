@@ -97,7 +97,7 @@ namespace SmartLib
 
 			HRESULT hr = E_NOINTERFACE;
 
-			//enable cache optimization in QueryInterface (not in QueryInterfaceInner to save memory)
+			//enable cache optimization in QueryInterface (not in QueryInterfaceInner to save memory??)
 			//test cache first
 			auto iter = _cachedQI.find(riid);
 			if (iter != _cachedQI.end())
@@ -207,7 +207,7 @@ namespace SmartLib
 
 		//the life time of inner is managed by outter
 		//all PostAggragate() after calling it
-		virtual HRESULT Aggragate(smIObjectBase*& inner) override
+		virtual HRESULT Aggragate(smIObjectBase*&& inner) override
 		{
 			assert(inner);
 			assert(std::find(_inners.begin(), _inners.end(), inner) == _inners.end());
@@ -220,7 +220,7 @@ namespace SmartLib
 
 		//the life time of inner is managed by outter
 		//all PostAggragate() after calling it
-		virtual HRESULT AggragateComBase(smIObjectBase*& comBaseInner) override
+		virtual HRESULT AggragateComBase(smIObjectBase*&& comBaseInner) override
 		{
 			assert(comBaseInner);
 			assert(std::find(_comBaseInners.begin(), _comBaseInners.end(), comBaseInner) == _comBaseInners.end());
