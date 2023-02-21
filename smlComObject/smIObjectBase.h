@@ -41,6 +41,10 @@ namespace SmartLib
 		}
 
 	public:
+		virtual const smMetaType* GetMetaTypeInner() const = 0;
+		virtual smIObjectBase* GetImplInner() = 0;
+
+	public:
 		//virtual HRESULT STDMETHODCALLTYPE QueryInterface(
 		//	/* [in] */ REFIID riid,
 		//	/* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR* __RPC_FAR* ppvObject) = 0;
@@ -59,11 +63,8 @@ namespace SmartLib
 		virtual HRESULT Aggragate(smIObjectBase*&& inner) = 0;
 		virtual HRESULT AggragateComBase(smIObjectBase*&& comBaseInner) = 0;
 
-		virtual const smMetaType* GetMetaTypeInner() const = 0;
-
-		virtual smIObjectBase* GetImplInner() = 0;
 		virtual smIObjectBase* GetImplOutter() = 0;
-
+		
 		virtual const bool InnerIsMetaType(const GUID& clsid) const = 0;
 		virtual const bool InnerIsMetaTypeOf(const GUID& clsid) const = 0;
 

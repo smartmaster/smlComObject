@@ -12,7 +12,7 @@ add_executable (smlComObject
 "smMetaType.h" 
 "smMetaType.cpp"
 "smIObjectBase.h" 
-"smObjectBase.h" 
+"smObjectBase.ver002.h" 
 "smCommDefs.h" 
 "smMetaTypeHelpers.h" 
 "smPtrHelpers.h"
@@ -22,7 +22,18 @@ add_executable (smlComObject
  "smModuleHelper.cpp" 
  "smModuleHelper.h"
  "smModuleHelper.test.cpp"
- "smComRegistry.h" "smComRegistry.cpp" "smGUIDHelper.h" "yyy-test-misc.cpp" "xxx-test-full.cpp" "xx-test-itf.h" "smObjectInstanceCounter.h" "smObjectInstanceCounter.cpp" "smGUIDHelper.cpp" "smPtrHelpers.cpp")
+ "smComRegistry.h" 
+ "smComRegistry.cpp" 
+ "smGUIDHelper.h" 
+ "yyy-test-misc.cpp" 
+ "xxx-test-full.cpp" 
+ "xx-test-itf.h" 
+ "smObjectInstanceCounter.h" 
+ "smObjectInstanceCounter.cpp" 
+ "smGUIDHelper.cpp" 
+ "smPtrHelpers.cpp" 
+ "smObjectBasePrivate.h" 
+ "smObjectBasePrivate.cpp" "smObjectBase.ver001.h" "smObjectBase.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET smlComObject PROPERTY CXX_STANDARD 20)
