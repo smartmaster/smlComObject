@@ -47,7 +47,7 @@ namespace SmartLib
 			++_hitCount;
 			*ppvObject = iter->second;
 			assert(*ppvObject);
-			AddRef();
+			smObjectBasePrivate::AddRef();
 			hr = S_OK;
 		}
 		else
@@ -55,7 +55,7 @@ namespace SmartLib
 			++_missingCount;
 			hr = _outter ?
 				_outter->QueryInterface(riid, ppvObject) :
-				QueryInterfaceInner(riid, ppvObject);
+				smObjectBasePrivate::QueryInterfaceInner(riid, ppvObject);
 
 			//add to cache here
 			if (SUCCEEDED(hr) && *ppvObject)
@@ -72,14 +72,14 @@ namespace SmartLib
 	{
 		return _outter ?
 			_outter->AddRef() :
-			AddRefInner();
+			smObjectBasePrivate::AddRefInner();
 	}
 
 	ULONG __stdcall smObjectBasePrivate::Release(void)
 	{
 		return _outter ?
 			_outter->Release() :
-			ReleaseInner();
+			smObjectBasePrivate::ReleaseInner();
 	}
 
 	HRESULT smObjectBasePrivate::QueryInterfaceInner(const GUID& riid, void** ppvObject)
@@ -93,7 +93,7 @@ namespace SmartLib
 			hr = S_OK;
 			if (SUCCEEDED(hr) && *ppvObject)
 			{
-				AddRef(); //call AddRef() not AddRefInner()
+				smObjectBasePrivate::AddRef(); //call AddRef() not AddRefInner()
 			}
 		}
 		else
@@ -204,7 +204,7 @@ namespace SmartLib
 	{
 		return _outter ?
 			_outter->GetImplOutter() //recursively 
-			: GetImplInner();
+			: GetImplInner(); //cannot call smObjectBasePrivate::GetImplInner
 	}
 
 	void smObjectBasePrivate::Print() const
