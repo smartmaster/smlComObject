@@ -22,7 +22,7 @@ add_executable (smlComObject
  "smModuleHelper.cpp" 
  "smModuleHelper.h"
  "smModuleHelper.test.cpp"
- "smComRegistry.h" "smComRegistry.cpp" "smGUIDHelper.h" "yyy-test-misc.cpp" "xxx-test-full.cpp" "xx-test-itf.h")
+ "smComRegistry.h" "smComRegistry.cpp" "smGUIDHelper.h" "yyy-test-misc.cpp" "xxx-test-full.cpp" "xx-test-itf.h" "smObjectInstanceCounter.h" "smObjectInstanceCounter.cpp" "smGUIDHelper.cpp" "smPtrHelpers.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET smlComObject PROPERTY CXX_STANDARD 20)

@@ -13,6 +13,16 @@ SmartLib::smMetaType::smMetaType(const char* name, const GUID& guid) :
 
 }
 
+const char* SmartLib::smMetaType::GetName() const
+{
+	return _name;
+}
+
+const GUID& SmartLib::smMetaType::GetID() const
+{
+	return _guid;
+}
+
 void SmartLib::smMetaType::AddCppBaseOffset(const smMetaType* mt, ptrdiff_t offset)
 {
 	_cppBaseOffsets.emplace_back(mt, offset);

@@ -32,15 +32,9 @@ namespace SmartLib
 	public:
 		smMetaType(const char* name, const GUID& guid);
 
-		const char* GetName() const
-		{
-			return _name;
-		}
+		const char* GetName() const;
 
-		const GUID& GetID() const
-		{
-			return _guid;
-		}
+		const GUID& GetID() const;
 
 		void AddCppBaseOffset(const smMetaType* mt, ptrdiff_t offset);
 		//void AddComBase(const smMetaType* mt);

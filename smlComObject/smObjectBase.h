@@ -8,6 +8,7 @@
 #include "smMetaType.h"
 #include "smMetaTypeHelpers.h"
 #include "smGUIDHelper.h"
+#include "smObjectInstanceCounter.h"
 
 namespace SmartLib
 {
@@ -74,6 +75,11 @@ namespace SmartLib
 
 	public:
 
+		smObjectBase()
+		{
+			smObjectInstanceCounter::SingleInstance()->AddInstance(this);
+		}
+
 		virtual ~smObjectBase()
 		{
 			for (auto inner : _inners)
@@ -87,6 +93,8 @@ namespace SmartLib
 				comBaseInner->ReleaseInner();
 			}
 			_comBaseInners.clear();
+
+			smObjectInstanceCounter::SingleInstance()->RemoveInstance(this);
 		}
 
 		virtual HRESULT STDMETHODCALLTYPE QueryInterface(

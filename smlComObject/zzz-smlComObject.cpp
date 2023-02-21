@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <cassert>
+
+#include "smObjectInstanceCounter.h"
 
 void TestFull();
 void TestSmoke();
@@ -14,9 +17,11 @@ void TestFullRawAgg();
 
 int main(int argc, char** argv)
 {
+	
 	using namespace ::std;
+	using namespace ::SmartLib;
 
-	int testCase = 3;
+	int testCase = 99999;
 	if (argc > 1)
 	{
 		testCase = stoi(argv[1]);
@@ -85,6 +90,8 @@ int main(int argc, char** argv)
 	}
 	break;
 	}
+
+	assert(0 == smObjectInstanceCounter::SingleInstance()->Count());
 
 	return 0;
 }
