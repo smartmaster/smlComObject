@@ -71,41 +71,16 @@ const SmartLib::smMetaType* SmartLib::smMetaType::FindComMetaType(const GUID& gu
 #endif
 
 
-ptrdiff_t SmartLib::smMetaType::FindCppOffset(const GUID& guid, ptrdiff_t currentOffset) const
+ptrdiff_t SmartLib::smMetaType::FindCppOffset(const GUID& guid) const
 {
-	constexpr int useCache = 1;
-	if constexpr (useCache)
+	ptrdiff_t offset = -1; //<0 means not found
+	auto iter = _cachedOffsets.find(guid);
+	if (iter != _cachedOffsets.end())
 	{
-		ptrdiff_t offset = -1; //<0 means not found
-		auto iter = _cachedOffsets.find(guid);
-		if (iter != _cachedOffsets.end())
-		{
-			offset = iter->second;
-			assert(offset >= 0);
-		}
-		return offset;
+		offset = iter->second;
+		assert(offset >= 0);
 	}
-	else
-	{
-		ptrdiff_t offset = -1; //<0 means not found
-		
-		if (::IsEqualGUID(guid, _guid))
-		{
-			offset = currentOffset;
-		}
-		else
-		{
-			for (auto [baseMT, baseOff] : _cppBaseOffsets)
-			{
-				offset = baseMT->FindCppOffset(guid, currentOffset + baseOff); //recursively
-				if (offset >= 0)
-				{
-					break;
-				}
-			}
-		}
-		return offset;
-	}
+	return offset;
 }
 
 void SmartLib::smMetaType::EnumCppOffset(ptrdiff_t curoffset, std::unordered_map<GUID, ptrdiff_t, smGUIDHasher, smGUIDEqual>& cachedOffsets)

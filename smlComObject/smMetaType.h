@@ -44,7 +44,7 @@ namespace SmartLib
 
 		//const smMetaType* FindComMetaType(const GUID& guid) const;
 
-		ptrdiff_t FindCppOffset(const GUID& guid, ptrdiff_t currentOffset) const;
+		ptrdiff_t FindCppOffset(const GUID& guid) const;
 
 		void EnumCppOffset();
 

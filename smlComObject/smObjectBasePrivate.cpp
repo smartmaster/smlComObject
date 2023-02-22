@@ -37,35 +37,9 @@ namespace SmartLib
 	{
 		assert(ppvObject);
 
-		HRESULT hr = E_NOINTERFACE;
-
-		//enable cache optimization in QueryInterface (not in QueryInterfaceInner to save memory??)
-		//test cache first
-		auto iter = _cachedQI.find(riid);
-		if (iter != _cachedQI.end())
-		{
-			++_hitCount;
-			*ppvObject = iter->second;
-			assert(*ppvObject);
-			smObjectBasePrivate::AddRef();
-			hr = S_OK;
-		}
-		else
-		{
-			++_missingCount;
-			hr = _outter ?
-				_outter->QueryInterface(riid, ppvObject) :
-				smObjectBasePrivate::QueryInterfaceInner(riid, ppvObject);
-
-			//add to cache here
-			if (SUCCEEDED(hr) && *ppvObject)
-			{
-				++_validQICount;
-				_cachedQI.insert({ riid, *ppvObject });
-			}
-		}
-
-		return hr;
+		return _outter ?
+			_outter->QueryInterface(riid, ppvObject) :
+			smObjectBasePrivate::QueryInterfaceInner(riid, ppvObject);
 	}
 
 	ULONG __stdcall smObjectBasePrivate::AddRef(void)
@@ -86,7 +60,7 @@ namespace SmartLib
 	{
 		HRESULT hr = E_NOINTERFACE;
 		const smMetaType* const mt = GetMetaTypeInner();
-		ptrdiff_t offset = mt->FindCppOffset(riid, 0);
+		ptrdiff_t offset = mt->FindCppOffset(riid); //neg _offsetBias
 		if (offset >= 0)
 		{
 			*ppvObject = smPtrHelpers::PtrAdvance(this, offset - _offsetBias);
