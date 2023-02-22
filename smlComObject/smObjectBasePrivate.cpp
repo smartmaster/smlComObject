@@ -30,6 +30,7 @@ namespace SmartLib
 
 	void smObjectBasePrivate::SetOffsetBias(ptrdiff_t offsetBias)
 	{
+		assert(offsetBias >= 0);
 		_offsetBias = offsetBias;
 	}
 

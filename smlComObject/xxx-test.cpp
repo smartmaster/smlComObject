@@ -10,6 +10,7 @@
 #include "smMetaTypeHelpers.h"
 #include "smIObjectBaseHelpers.h"
 #include "smQIHelper.h"
+#include "smPtrHelpers.h"
 
 #include "xx-test-itf.h"
 
@@ -218,7 +219,38 @@ namespace
 	};
 #endif
 
-	class xxxObject : public smObjectBase<xxxIB, xxxIC, xxxID>
+	class smPalceHoder
+	{
+	public:
+		long long buffer[100];
+
+		virtual void foo0()
+		{
+			assert(false);
+		}
+
+		virtual void foo1()
+		{
+			assert(false);
+		}
+
+		virtual void foo2()
+		{
+			assert(false);
+		}
+
+		virtual void foo3()
+		{
+			assert(false);
+		}
+
+		virtual void foo4()
+		{
+			assert(false);
+		}
+	};
+
+	class xxxObject : public smPalceHoder, public smObjectBase<xxxIB, xxxIC, xxxID>
 	{
 	public:
 		static const smMetaType* StaticMetaType()
@@ -236,6 +268,12 @@ namespace
 		}
 
 	public:
+		xxxObject()
+		{
+			using BaseTemp = smObjectBase<xxxIB, xxxIC, xxxID>;
+			BaseTemp::SetOffsetBias(smPtrHelpers::BaseOffset<xxxObject, BaseTemp>());
+		}
+
 
 		virtual ~xxxObject()
 		{
@@ -673,7 +711,7 @@ namespace
 
 #endif
 
-	class yyyObject : public smObjectBase<yyyIB, yyyIC, yyyID>
+	class yyyObject : public smPalceHoder, public smObjectBase<yyyIB, yyyIC, yyyID>
 	{
 	public:
 		static const smMetaType* StaticMetaType()
@@ -691,6 +729,12 @@ namespace
 		}
 
 	public:
+
+		yyyObject()
+		{
+			using BaseTemp = smObjectBase<yyyIB, yyyIC, yyyID>;
+			BaseTemp::SetOffsetBias(smPtrHelpers::BaseOffset<yyyObject, BaseTemp>());
+		}
 
 		virtual ~yyyObject()
 		{
@@ -1077,6 +1121,14 @@ namespace
 		}
 
 	public:
+
+		zzzObject()
+		{
+			using BaseTemp = smObjectBase<xxxIB, xxxIC, xxxID>;
+			BaseTemp::SetOffsetBias(smPtrHelpers::BaseOffset<zzzObject, BaseTemp>());
+		}
+
+
 		//impls for pure virtual methods
 		//virtual void foo() override {}
 	};

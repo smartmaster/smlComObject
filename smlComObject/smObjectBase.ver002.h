@@ -12,6 +12,8 @@
 #include "smObjectBasePrivate.h"
 #include "smPtrHelpers.h"
 
+//#define SM_SETOFFSETBIAS(aDerived, aBase, aOffset) aBase::SetOffsetBias((aOffset) + smPtrHelpers::BaseOffset<aDerived, aBase>())
+
 namespace SmartLib
 {
 	template<typename... TIBases>
@@ -44,13 +46,19 @@ namespace SmartLib
 
 		smObjectBase()
 		{
-			smObjectBasePrivate::SetOffsetBias(smPtrHelpers::BaseOffset<smObjectBase, smObjectBasePrivate>());
 			smObjectInstanceCounter::SingleInstance()->AddInstance(this);
 		}
 
 		virtual ~smObjectBase()
 		{	
 			smObjectInstanceCounter::SingleInstance()->RemoveInstance(this);
+		}
+
+		//not virtual, called in derived calss constructor
+		void SetOffsetBias(ptrdiff_t offsetBias) 
+		{
+			assert(offsetBias >= 0);
+			smObjectBasePrivate::SetOffsetBias(offsetBias + smPtrHelpers::BaseOffset<smObjectBase, smObjectBasePrivate>());
 		}
 
 		virtual HRESULT STDMETHODCALLTYPE QueryInterface(
