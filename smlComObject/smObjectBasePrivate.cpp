@@ -126,6 +126,11 @@ namespace SmartLib
 	{
 		assert(inner);
 		assert(std::find(_inners.begin(), _inners.end(), inner) == _inners.end());
+
+		inner->AddRef();
+		ULONG refCount = inner->Release();
+		assert(1 == refCount);
+
 		inner->SetOutter(static_cast<smIObjectBase*>(this));
 		_inners.emplace_back(inner);
 		inner = nullptr; //ownership transfered
@@ -139,6 +144,11 @@ namespace SmartLib
 	{
 		assert(comBaseInner);
 		assert(std::find(_comBaseInners.begin(), _comBaseInners.end(), comBaseInner) == _comBaseInners.end());
+		
+		comBaseInner->AddRef();
+		ULONG refCount = comBaseInner->Release();
+		assert(1 == refCount);
+
 		comBaseInner->SetOutter(static_cast<smIObjectBase*>(this));
 		_comBaseInners.emplace_back(comBaseInner);
 		comBaseInner = nullptr; //ownership transfered
