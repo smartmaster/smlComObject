@@ -4,6 +4,8 @@
 #include <atlbase.h>
 #include <tuple>
 #include <cassert>
+
+#include "smIObjectBase.h"
 #include "smMetaTypeHelpers.h"
 
 

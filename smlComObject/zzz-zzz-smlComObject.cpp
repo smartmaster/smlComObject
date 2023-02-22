@@ -14,6 +14,7 @@ void Test_smGetMoudleName();
 void TestVecHash();
 void TestFullRaw();
 void TestFullRawAgg();
+void Test_zzz_example();
 
 int main(int argc, char** argv)
 {
@@ -29,11 +30,13 @@ int main(int argc, char** argv)
 
 	switch (testCase)
 	{
-		//case xxx:
-		//{
-		//	Test_xxx();
-		//}
-		//break;
+	case 10000:
+	{
+		Test_zzz_example();
+	}
+	break;
+
+
 	case 99999:
 	{
 		//all test at once
