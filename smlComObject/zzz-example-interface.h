@@ -63,4 +63,7 @@ namespace SmartLib
 
 
 	extern const smMetaType* StaticMetaType_zzzObject();
+	extern const smMetaType* StaticMetaType_zzzObjectA();
+	extern const smMetaType* StaticMetaType_zzzObjectB();
+	extern const smMetaType* StaticMetaType_zzzObjectC();
 }

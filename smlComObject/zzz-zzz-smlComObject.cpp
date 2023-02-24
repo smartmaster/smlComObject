@@ -15,6 +15,8 @@ void TestVecHash();
 void TestFullRaw();
 void TestFullRawAgg();
 void Test_zzz_example();
+void Test_zzz_aggragation_vertical_example();
+void Test_zzz_aggragation_horizontal_example();
 
 int main(int argc, char** argv)
 {
@@ -33,6 +35,8 @@ int main(int argc, char** argv)
 	case 10000:
 	{
 		Test_zzz_example();
+		Test_zzz_aggragation_vertical_example();
+		Test_zzz_aggragation_horizontal_example();
 	}
 	break;
 
