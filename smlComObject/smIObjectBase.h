@@ -3,42 +3,19 @@
 
 //for "usage and example" go to below
 
-#include <Unknwn.h>
+
 #include <mutex>
 #include "smCommDefs.h"
 #include "smMetaType.h"
+#include "smIUnknown.h"
 #include "smMetaTypeHelpers.h"
 
 namespace SmartLib
 {
-	class smIUnknown : public IUnknown
-	{
-	public:
-		static const smMetaType* StaticMetaType()
-		{
-			static smMetaType mt{ SM_NAME_OF(smIUnknown), __uuidof(IUnknown) };
-
-			static std::once_flag onceflag;
-			std::call_once(onceflag, []() {
-				auto* comReg = smComRegistry::SingleInstance();
-				auto* modName = smModuleHelper::GetCurrentModuleName();
-				comReg->Add(modName, &mt);
-				});
-
-			return &mt;
-		}
-	};
-
 	class smIObjectBase : public smIUnknown
 	{
 	public:
-		static const smMetaType* StaticMetaType()
-		{
-			return smMetaTypeMaker::Make<smIObjectBase, smIUnknown>(
-				SM_NAME_OF(smIObjectBase),
-				GUID{ 0xd647181d, 0xe29d, 0x4afc, { 0x96, 0x6d, 0x50, 0xf5, 0xce, 0x49, 0x94, 0xbf } }
-			);
-		}
+		static const smMetaType* StaticMetaType();
 
 	public:
 		virtual const smMetaType* GetMetaTypeInner() const = 0;

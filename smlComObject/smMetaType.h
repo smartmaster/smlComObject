@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Unknwn.h>
 #include <vector>
 #include <memory>
 #include <tuple>
@@ -10,11 +9,14 @@
 
 namespace SmartLib
 {
+
+	class smIUnknown;
+
 	//be process static
 	class smMetaType 
 	{
 	public:
-		typedef IUnknown* (*pfnCreateInstance)();
+		typedef smIUnknown* (*pfnCreateInstance)();
 
 	private:
 		const char* _name{ nullptr };
@@ -40,7 +42,7 @@ namespace SmartLib
 		//void AddComBase(const smMetaType* mt);
 
 		void SetCreateInstanceMethod(pfnCreateInstance ci);
-		IUnknown* CreateInstance() const;
+		smIUnknown* CreateInstance() const;
 
 		//const smMetaType* FindComMetaType(const GUID& guid) const;
 

@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <cassert>
 #include <mutex>
+
 #include "smMetaType.h"
 #include "smPtrHelpers.h"
 #include "smIObjectBaseHelpers.h"

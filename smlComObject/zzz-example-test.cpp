@@ -14,7 +14,7 @@ void Test_zzz_example()
 
 	const smMetaType* mt = StaticMetaType_zzzObject();
 
-	CComPtr<IUnknown> unk;
+	CComPtr<smIUnknown> unk;
 	unk.Attach(mt->CreateInstance());
 
 

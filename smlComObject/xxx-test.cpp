@@ -413,7 +413,7 @@ namespace
 		assert(mt0 == mt1 && mt0 == mt2);
 	}
 
-	static void TestAllQI(IUnknown* unk)
+	static void TestAllQI(smIUnknown* unk)
 	{
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<smIUnknown>(unk);
@@ -462,7 +462,7 @@ namespace
 
 void TestSmoke()
 {
-	CComPtr<IUnknown> unk;
+	CComPtr<smIUnknown> unk;
 	unk.Attach(xxxObject::StaticMetaType()->CreateInstance());
 	TestAllQI(unk);
 
@@ -874,7 +874,7 @@ namespace
 		assert(mt0 == mt1 && mt0 == mt2);
 	}
 
-	static void yyyTestAllQI(IUnknown* unk)
+	static void yyyTestAllQI(smIUnknown* unk)
 	{
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<smIUnknown>(unk);
@@ -921,7 +921,7 @@ namespace
 
 void yyyTestSmoke()
 {
-	CComPtr<IUnknown> unk;
+	CComPtr<smIUnknown> unk;
 	unk.Attach(yyyObject::StaticMetaType()->CreateInstance());
 	yyyTestAllQI(unk);
 

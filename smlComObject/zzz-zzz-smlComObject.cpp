@@ -32,18 +32,15 @@ int main(int argc, char** argv)
 
 	switch (testCase)
 	{
-	case 10000:
-	{
-		Test_zzz_example();
-		Test_zzz_aggragation_vertical_example();
-		Test_zzz_aggragation_horizontal_example();
-	}
-	break;
+	
 
 
 	case 99999:
 	{
 		//all test at once
+		Test_zzz_example();
+		Test_zzz_aggragation_vertical_example();
+		Test_zzz_aggragation_horizontal_example();
 		TestFullRawAgg();
 		TestFullRaw();
 		TestFull();
@@ -52,6 +49,14 @@ int main(int argc, char** argv)
 		TestFull();
 		yyyTestSmoke();
 		TestSmoke();
+	}
+	break;
+
+	case 6:
+	{
+		Test_zzz_example();
+		Test_zzz_aggragation_vertical_example();
+		Test_zzz_aggragation_horizontal_example();
 	}
 	break;
 	case 5:

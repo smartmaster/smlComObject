@@ -33,7 +33,7 @@ add_executable (smlComObject
  "smGUIDHelper.cpp" 
  "smPtrHelpers.cpp" 
  "smObjectBasePrivate.h" 
- "smObjectBasePrivate.cpp" "smObjectBase.ver001.h" "smObjectBase.h" "zzz-example-interface.h" "zzz-example-class.cpp" "zzz-example-test.cpp" "zzz-test-aggragation-class.cpp" "zzz-test-aggragation.cpp")
+ "smObjectBasePrivate.cpp" "smObjectBase.ver001.h" "smObjectBase.h" "zzz-example-interface.h" "zzz-example-class.cpp" "zzz-example-test.cpp" "zzz-test-aggragation-class.cpp" "zzz-test-aggragation.cpp" "smIUnknown.cpp" "smIObjectBase.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET smlComObject PROPERTY CXX_STANDARD 20)

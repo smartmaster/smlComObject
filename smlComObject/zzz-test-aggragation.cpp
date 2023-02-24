@@ -47,17 +47,17 @@ void Test_zzz_aggragation_horizontal_example()
 	const smMetaType* mtB = StaticMetaType_zzzObjectB();
 	const smMetaType* mtC = StaticMetaType_zzzObjectC();
 
-	IUnknown* unkA = mtA->CreateInstance();
-	IUnknown* unkB = mtB->CreateInstance();
-	IUnknown* unkC = mtC->CreateInstance();
+	smIUnknown* unkA = mtA->CreateInstance();
+	smIUnknown* unkB = mtB->CreateInstance();
+	smIUnknown* unkC = mtC->CreateInstance();
 
 	static_cast<smIObjectBase*>(unkB)->Aggragate(static_cast<smIObjectBase*>(unkC));
-	smPostAggrageOp<IUnknown>::PostAggrate(unkC);
+	smPostAggrageOp<smIUnknown>::PostAggrate(unkC);
 
 	static_cast<smIObjectBase*>(unkA)->Aggragate(static_cast<smIObjectBase*>(unkB));
-	smPostAggrageOp<IUnknown>::PostAggrate(unkB);
+	smPostAggrageOp<smIUnknown>::PostAggrate(unkB);
 
-	CComPtr<IUnknown> spa;
+	CComPtr<smIUnknown> spa;
 	spa.Attach(unkA);
 	unkA = nullptr;
 
@@ -85,17 +85,17 @@ void Test_zzz_aggragation_vertical_example()
 	const smMetaType* mtB = StaticMetaType_zzzObjectB();
 	const smMetaType* mtC = StaticMetaType_zzzObjectC();
 
-	IUnknown* unkA = mtA->CreateInstance();
-	IUnknown* unkB = mtB->CreateInstance();
-	IUnknown* unkC = mtC->CreateInstance();
+	smIUnknown* unkA = mtA->CreateInstance();
+	smIUnknown* unkB = mtB->CreateInstance();
+	smIUnknown* unkC = mtC->CreateInstance();
 
 	static_cast<smIObjectBase*>(unkB)->AggragateComBase(static_cast<smIObjectBase*>(unkC));
-	smPostAggrageOp<IUnknown>::PostAggrate(unkC);
+	smPostAggrageOp<smIUnknown>::PostAggrate(unkC);
 
 	static_cast<smIObjectBase*>(unkA)->AggragateComBase(static_cast<smIObjectBase*>(unkB));
-	smPostAggrageOp<IUnknown>::PostAggrate(unkB);
+	smPostAggrageOp<smIUnknown>::PostAggrate(unkB);
 
-	CComPtr<IUnknown> spa;
+	CComPtr<smIUnknown> spa;
 	spa.Attach(unkA);
 	unkA = nullptr;
 

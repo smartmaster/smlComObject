@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Unknwn.h>
+#include "smIUnknown.h"
 
 #include <unordered_map>
 #include <string>

@@ -15,7 +15,7 @@ namespace SmartLib
 	{
 	public:
 		template<typename TI>
-		static CComPtr<TI> QI(IUnknown* unk)
+		static CComPtr<TI> QI(smIUnknown* unk)
 		{
 			assert(unk);
 			CComPtr<TI> itf;
@@ -26,7 +26,7 @@ namespace SmartLib
 		//the lifetime of CComPtr<smIObjectBase> is same as TI*
 		//this is used when multiple inheritances, or method call will be ambiguous
 		template<typename TI>
-		static std::tuple<TI*, CComPtr<smIObjectBase>>  QIRaw(IUnknown* unk)
+		static std::tuple<TI*, CComPtr<smIObjectBase>>  QIRaw(smIUnknown* unk)
 		{
 			assert(unk);
 

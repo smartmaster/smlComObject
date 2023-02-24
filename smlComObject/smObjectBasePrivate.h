@@ -23,26 +23,13 @@ namespace SmartLib
 
 	public:
 
-		static const smMetaType* StaticMetaType()
-		{
-			return smMetaTypeMaker::Make<smObjectBasePrivate, smIObjectBase>(
-				SM_NAME_OF(smObjectBasePrivate),
-				// {AB212042-8170-4C54-9210-E088EE861F5D}
-				GUID{ 0xab212042, 0x8170, 0x4c54, { 0x92, 0x10, 0xe0, 0x88, 0xee, 0x86, 0x1f, 0x5d } }
-			);
-		}
+		static const smMetaType* StaticMetaType();
 
 		//should be re-implemented by smObjectBase
-		virtual const smMetaType* GetMetaTypeInner() const override
-		{
-			return StaticMetaType();
-		}
+		virtual const smMetaType* GetMetaTypeInner() const override;
 
 		//should be re-implemented by smObjectBase
-		virtual smIObjectBase* GetImplInner() override
-		{
-			return static_cast<smIObjectBase*>(this);
-		}
+		virtual smIObjectBase* GetImplInner() override;
 
 	public:
 

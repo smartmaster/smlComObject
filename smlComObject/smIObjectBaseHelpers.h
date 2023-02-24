@@ -1,8 +1,9 @@
 #pragma once
 
-#include <Unknwn.h>
 #include <atlbase.h>
 
+#include "smMetaType.h"
+#include "smIUnknown.h"
 
 
 namespace SmartLib
@@ -12,14 +13,14 @@ namespace SmartLib
 	public:
 		//caller release the pointer
 		template<typename T>
-		static IUnknown* CreateInstance()
+		static smIUnknown* CreateInstance()
 		{
 			HRESULT hr = E_FAIL;
-			IUnknown* unk = nullptr;
+			smIUnknown* unk = nullptr;
 			auto ptr = new T{};
 			if (ptr)
 			{
-				hr = ptr->QueryInterface(__uuidof(IUnknown), (void**)(&unk));
+				hr = ptr->QueryInterface(smIUnknown::StaticMetaType()->GetID(), (void**)(&unk));
 				if (FAILED(hr) || nullptr == unk)
 				{
 					unk = nullptr;

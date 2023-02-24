@@ -39,7 +39,7 @@ namespace {
 		assert(mt0 == mt1 && mt0 == mt2);
 	}
 
-	static void DoTestAllQI(IUnknown* unk)
+	static void DoTestAllQI(smIUnknown* unk)
 	{
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<smIUnknown>(unk);
@@ -84,25 +84,25 @@ namespace {
 	}
 
 
-	static void DoTestSmoke(IUnknown* unk);
-	static void yyyDoTestSmoke(IUnknown* unk);
+	static void DoTestSmoke(smIUnknown* unk);
+	static void yyyDoTestSmoke(smIUnknown* unk);
 
-	static void DoTestAllQI(IUnknown* unk);
-	static void yyyDoTestAllQI(IUnknown* unk);
+	static void DoTestAllQI(smIUnknown* unk);
+	static void yyyDoTestAllQI(smIUnknown* unk);
 
-	static void TestAllQI(IUnknown* unk)
+	static void TestAllQI(smIUnknown* unk)
 	{
 		DoTestAllQI(unk);
 		yyyDoTestAllQI(unk);
 	}
 
-	static void yyyTestAllQI(IUnknown* unk)
+	static void yyyTestAllQI(smIUnknown* unk)
 	{
 		DoTestAllQI(unk);
 		yyyDoTestAllQI(unk);
 	}
 
-	static void DoTestSmoke(IUnknown* unk)
+	static void DoTestSmoke(smIUnknown* unk)
 	{
 
 		{
@@ -230,7 +230,7 @@ namespace {
 		assert(mt0 == mt1 && mt0 == mt2);
 	}
 
-	static void yyyDoTestAllQI(IUnknown* unk)
+	static void yyyDoTestAllQI(smIUnknown* unk)
 	{
 		{
 			auto [ptr, sp] = smQIHelper::QIRaw<smIUnknown>(unk);
@@ -274,7 +274,7 @@ namespace {
 		}
 	}
 
-	static void yyyDoTestSmoke(IUnknown* unk)
+	static void yyyDoTestSmoke(smIUnknown* unk)
 	{
 
 		{
@@ -390,13 +390,13 @@ namespace {
 #endif
 	}
 
-	static void TestSmoke(IUnknown* outter)
+	static void TestSmoke(smIUnknown* outter)
 	{
 		DoTestSmoke(outter);
 		yyyDoTestSmoke(outter);
 	}
 
-	static void yyyTestSmoke(IUnknown* outter)
+	static void yyyTestSmoke(smIUnknown* outter)
 	{
 		DoTestSmoke(outter);
 		yyyDoTestSmoke(outter);
@@ -414,8 +414,8 @@ void TestFullRaw()
 	auto vecitf = TestActivateInterface();
 	auto vecClass = TestActivateClass();
 
-	CComPtr<IUnknown> outter;
-	vector<IUnknown*> objects(vecClass.size());
+	CComPtr<smIUnknown> outter;
+	vector<smIUnknown*> objects(vecClass.size());
 	for (size_t ii = 0; ii < objects.size(); ++ii)
 	{
 		objects[ii] = vecClass[ii]->CreateInstance();
@@ -453,7 +453,7 @@ void TestFullRaw()
 
 	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
 	{
-		smPostAggrageOp<IUnknown>::PostAggrate(objects[ii + 1]);
+		smPostAggrageOp<smIUnknown>::PostAggrate(objects[ii + 1]);
 	}
 
 
@@ -471,7 +471,7 @@ static void TestIsTypeOf(T& ptr, const GUID& derivedGUID, const GUID& baseGUID)
 	assert(ptr->GetImplOutter()->InnerIsMetaTypeOf(baseGUID));
 }
 
-static void DoTestSmokeAgg(IUnknown* unk, const GUID& derivedGUID, const GUID& baseGUID)
+static void DoTestSmokeAgg(smIUnknown* unk, const GUID& derivedGUID, const GUID& baseGUID)
 {
 
 	{
@@ -602,7 +602,7 @@ void TestFull()
 	auto vecitf = TestActivateInterface();
 	auto vecClass = TestActivateClass();
 
-	vector<CComPtr<IUnknown>> objects(vecClass.size());
+	vector<CComPtr<smIUnknown>> objects(vecClass.size());
 	for (size_t ii = 0; ii < objects.size(); ++ii)
 	{
 		objects[ii].Attach(vecClass[ii]->CreateInstance());
@@ -639,7 +639,7 @@ void TestFull()
 
 	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
 	{
-		smPostAggrageOp<CComPtr<IUnknown>>::PostAggrate(objects[ii + 1]);
+		smPostAggrageOp<CComPtr<smIUnknown>>::PostAggrate(objects[ii + 1]);
 	}
 
 
@@ -650,7 +650,7 @@ void TestFull()
 
 
 
-static void yyyDoTestSmokeAgg(IUnknown* unk, const GUID& derivedGUID, const GUID& baseGUID)
+static void yyyDoTestSmokeAgg(smIUnknown* unk, const GUID& derivedGUID, const GUID& baseGUID)
 {
 
 	{
@@ -783,8 +783,8 @@ void TestFullRawAgg()
 	auto vecitf = TestActivateInterface();
 	auto vecClass = TestActivateClass();
 
-	CComPtr<IUnknown> outter;
-	vector<IUnknown*> objects(vecClass.size());
+	CComPtr<smIUnknown> outter;
+	vector<smIUnknown*> objects(vecClass.size());
 	for (size_t ii = 0; ii < objects.size(); ++ii)
 	{
 		objects[ii] = vecClass[ii]->CreateInstance();
@@ -822,7 +822,7 @@ void TestFullRawAgg()
 
 	for (size_t ii = 0; ii < objects.size() - 1; ++ii)
 	{
-		smPostAggrageOp<IUnknown>::PostAggrate(objects[ii + 1]); //do not forget after AggragateComBase
+		smPostAggrageOp<smIUnknown>::PostAggrate(objects[ii + 1]); //do not forget after AggragateComBase
 	}
 
 	const GUID& derivedGUID = vecClass[0]->GetID();
