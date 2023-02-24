@@ -222,7 +222,7 @@ namespace
 	class smPalceHoder
 	{
 	public:
-		long long buffer[100];
+		long long buffer[100]{ 0 };
 
 		virtual void foo0()
 		{
